@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 0</title>
+</head>
+<style>
+	body {
+		background-color: lightblue;
+	}
+</style>
+
+<body>
+	<h2>Задача 0. Обчислити значення виразів:</h2>
+	<div class="image"><img src="img/2023-02-16.png" alt=""></div>
+	<script>
+		const a = parseFloat(prompt('Введіть значення а', '0'))
+		const b = parseFloat(prompt('Введіть значення b', '0'))
+		const c = parseFloat(prompt('Введіть значення c', '0'))
+		let s1 = a + 12 + b
+		let s2 = Math.sqrt((a + b) / (2 * a)).toFixed(3)
+		let s3 = Math.cbrt((a + b) / c).toFixed(3)
+		let s4 = Math.sin(a / (-b)).toFixed(3)
+		document.write(`<h2>1) s1 = ${s1}</h2>`)
+		document.write(`<h2>2) s2 = ${s2}</h2>`)
+		document.write(`<h2>3) s3 = ${s3}</h2>`)
+		document.write(`<h2>4) s4 = ${s4}</h2>`)
+	</script>
+</body>
+
+</html>

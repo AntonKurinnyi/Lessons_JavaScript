@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 2</title>
+</head>
+<style>
+	body {
+		background-color: lightblue;
+	}
+</style>
+
+<body>
+	<h2>Задача 2. Дано рік народження (дата: 1 січня) та поточний рік. Знайти кількість років.</h2>
+	<script>
+		const yourBirthDate = parseInt(prompt("Введіть рік вашого народження:", "наприклад 1980"))
+		const currentYear = new Date().getFullYear()
+		let userAge = currentYear - yourBirthDate
+		document.write(`<h2>
+			Ваш вік - ${userAge}
+			</h2>`)
+	</script>
+</body>
+
+</html>

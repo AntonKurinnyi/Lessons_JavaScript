@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 6</title>
+</head>
+<style>
+	body {
+		background-color: lightblue;
+	}
+</style>
+
+<body>
+	<h2>Задача 6. З клавіатури вводяться вартість товару та кількість одиниць 3 товарів. Обчислити вартість кожного
+		товару окремо та загальну вартість. Вивести чек (як у супермаркеті) використовуючи елементи розмітки.
+	</h2>
+
+	<script>
+		const priceFirst = parseFloat(prompt('Введіть вартість першого товару:', '0'))
+		const quantFirst = parseInt(prompt('Введіть кількісь першого товару', '0'))
+		const priceSecond = parseFloat(prompt('Введіть вартість другого товару:', '0'))
+		const quantSecond = parseInt(prompt('Введіть кількісь другого товару', '0'))
+		const priceThird = parseFloat(prompt('Введіть вартість третього товару:', '0'))
+		const quantThird = parseInt(prompt('Введіть кількісь третього товару', '0'))
+		let totalPriceFirst = (priceFirst * quantFirst)
+		let totalPriceSecond = (priceSecond * quantSecond)
+		let totalPriceThird = (priceThird * quantThird)
+		let totalPriceOfAll = (totalPriceFirst + totalPriceSecond + totalPriceThird)
+
+		document.write(`			
+		<table border=5px>
+		 	<tr>
+    			<td>Вартість</td>
+    			<td>Кількість</td>
+    			<td>Сума</td>
+  			</tr>
+			<tr>
+    			<td>Перший товар:${priceFirst}</td>
+    			<td>${quantFirst}</td>
+    			<td>${totalPriceFirst.toFixed(3)}</td>
+  			</tr>
+  			<tr>
+    			<td>Другий товар:${priceSecond}</td>
+    			<td>${quantSecond}</td>
+    			<td>${totalPriceSecond.toFixed(3)}</td>
+  			</tr>
+			<tr>
+    			<td>Третій товар:${priceThird}</td>
+    			<td>${quantThird}</td>
+    			<td>${totalPriceThird.toFixed(3)}</td>
+  			</tr>
+			<tr>
+    			<td>Всього</td>
+    			<td></td>
+    			<td>${totalPriceOfAll.toFixed(3)}</td>
+  			</tr>
+		</table >
+		`)
+	</script>
+</body>
+
+</html>
