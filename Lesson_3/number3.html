@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Домашнє завдання №3</title>
+</head>
+
+<body style="background-color: rgb(181, 181, 155)">
+	<h2>Задача №3.</h2>
+	<p>
+		Випадковим чином генерується число від 1 до 5. Спробуйте вгадати число за 2 спроби.
+	</p>
+	<script>
+		const minNumber = 1
+		const maxNumber = 5
+		const randomNumber = minNumber + Math.floor(Math.random() * (maxNumber - minNumber + 1))
+		const inputNumberOne = parseInt(prompt('Введіть номер від 1 до 5. У Вас є дві спроби', '1'))
+		let result
+		if (inputNumberOne > 5 || inputNumberOne < 1)
+			result = `Некоректно введений номер`
+		else if (inputNumberOne === randomNumber)
+			result = `Ви вгадали! Загаданий номер був ${randomNumber}`
+		else {
+			const inputNumberTwo = parseInt(prompt('Спробуйте ще раз', '1'))
+			if (inputNumberTwo === randomNumber)
+				result = `Ви вгадали з другої спроби! Загаданий номер був ${randomNumber}`
+			else
+				result = `Нажаль Ви не вгадали! Ви ввели ${inputNumberOne} та ${inputNumberTwo} Загаданий номер був ${randomNumber}`
+		}
+		document.write(result)
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Домашнє завдання №3</title>
+</head>
+
+<body style="background-color: rgb(181, 181, 155)">
+	<h2>Задача №7.</h2>
+	<p>
+		З клавіатури вводиться номер місяця. Вивести до якої пори він відноситься
+	</p>
+	<script>
+		const inputMonth = parseInt(prompt('Введіть номер місяця від 1 до 12', '1'))
+		let result
+		switch (inputMonth) {
+			case 1:
+			case 2:
+			case 12:
+				result = 'Зима'
+				break;
+			case 3:
+			case 4:
+			case 5:
+				result = 'Весна'
+				break;
+			case 6:
+			case 7:
+			case 8:
+				result = 'Літо'
+				break;
+			case 9:
+			case 10:
+			case 11:
+				result = 'Осінь'
+				break; 8
+			default:
+				result = 'Неправильно введений номер місяця. Введіть від 1 до 12'
+				break;
+		}
+		document.write(`<h2>${result}</h2>`)
+	</script>
+</body>
+
+</html>

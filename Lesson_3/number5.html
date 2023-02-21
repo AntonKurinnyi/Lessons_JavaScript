@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Домашнє завдання №3</title>
+</head>
+
+<body style="background-color: rgb(181, 181, 155)">
+	<h2>Задача №5.</h2>
+	<p>
+		З клавіатури вводиться назва категорії водія (А-мотоцикл, В-легковий автомобіль, С-вантажний автомобіль).
+		Вивести
+		на
+		екран назву транспортного засобу, яким він може керувати.
+	</p>
+	<script>
+		const categoryOflicense = prompt('Введіть категорію вашого посвідчення водія : A, B або C великими літерами', 'A')
+		let result
+		switch (categoryOflicense) {
+			case 'A': result = 'Мотоцикл';
+				break;
+			case 'B': result = 'Легковий автомобіль';
+				break;
+			case 'C': result = 'Вантажний автомобіль';
+				break;
+			default: result = 'Неправильно введена категорія';
+				break;
+		}
+		document.write(`<h2>${result}</h2>`)
+	</script>
+</body>
+
+</html>
