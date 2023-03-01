@@ -1,0 +1,65 @@
+@import url('reset.css');
+@import url(https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900);
+
+body{
+font-family: "Inter", sans-serif;
+background: linear-gradient(90deg, rgba(154,106,186,1) 9%, rgba(204,88,133,1) 26%, rgba(253,29,29,1) 50%, rgba(144,71,42,1) 77%, rgba(252,176,69,1) 100%);
+}
+h1{
+	text-align: center;
+	font-size: 40px;
+	font-weight: 600;
+	margin-bottom: 10px;
+}
+h1:hover{
+	text-decoration: underline;
+	font-size: 50px;
+}
+.main__container {
+	max-width: 1520px;
+	margin: 0 auto;
+	background-color: rgb(69, 99, 99);
+	padding: 20px;
+}
+
+.content{
+	background-color: rgb(82, 82, 195);
+font-size: 20px;
+font-weight: 500;
+text-align: center;
+border: 2px solid green;
+
+}
+.content h2{
+	margin-top: 10px ;
+	margin-bottom: 15px;
+}
+ .content img{
+	border-radius: 15px;
+	margin: 5px;
+ }
+
+ .icons{
+background-color:rgb(125, 63, 63) ;
+font-size: 25px;
+font-weight: 700;
+text-align: center;
+border: 3px solid rgb(0, 9, 128);
+margin-bottom: 20px;
+ }
+ .icons img{
+	margin: 10px;
+ }
+
+.design{
+background-color:rgb(144, 110, 79);
+font-size: 25px;
+font-weight: 900;
+text-align: center;
+border:7px dotted rgb(128, 0, 66);
+margin-bottom: 30px;
+padding-top: 20px;
+ }
+ .design img{
+	margin: 10px;
+ }
