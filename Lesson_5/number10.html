@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework №5</title>
+</head>
+
+<body style="background-color: rgb(181, 181, 155)">
+	<h2>Задача №10</h2>
+	<p>
+		Знайти суму всіх непарних чисел, що знаходяться між заданими користувачем числами.
+	</p>
+	<script>
+		let minUserNumber = parseInt(prompt("Введіть перше число", "0"))
+		let maxUserNumber = parseInt(prompt("Введіть друге число", "0"))
+		let sum = 0
+		for (let i = minUserNumber; i <= maxUserNumber; i++)
+			if (i % 2 !== 0) sum += i
+		document.write(`Сума всіх непарних чисел: ${sum}`)
+	</script>
+</body>
+
+</html>

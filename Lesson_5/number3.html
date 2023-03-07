@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework №5</title>
+</head>
+
+<body style="background-color: rgb(181, 181, 155)">
+	<h2>Задача №3</h2>
+	<p>
+		Вивести таблицю з одним рядком і 7 стовпцями.
+	</p>
+	<script>
+		let row = ""
+		for (let i = 0; i < 7; i++) {
+			row += `<td>${i + 1}</td>`
+		}
+		document.write(`
+			<table border="5">
+				<tr>
+					${row}
+				</tr>					
+			</table>
+		  `)
+	</script>
+
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework №5</title>
+</head>
+
+<body style="background-color: rgb(181, 181, 155)">
+	<h2>Задача №1</h2>
+	<p>
+		Вивести з використанням циклів маркований список з випадковими числами (1-100). Кількість випадкових чисел
+		вводиться користувачем.
+	</p>
+	<script>
+		const quantOfNumbers = parseInt(prompt("Введіть кількість випадкових чисел", "1"))
+		const minNumber = 1
+		const maxNumber = 100
+		let listOfNumbers = ""
+		for (let i = 0; i < quantOfNumbers; i++) {
+			let randomNumber = Math.floor(Math.random() * (maxNumber - minNumber + 1)) + minNumber
+			listOfNumbers += `<li>${randomNumber}</li>`
+		}
+		document.write(`Кількість випадкових чисел:${quantOfNumbers}
+				<ul>
+					${listOfNumbers}
+				</ul>
+		`)
+	</script>
+
+</body>
+
+</html>

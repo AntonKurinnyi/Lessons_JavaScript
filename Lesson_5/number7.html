@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework №5</title>
+</head>
+
+<body style="background-color: rgb(181, 181, 155)">
+	<h2>Задача №7</h2>
+	<p>
+		Вивести на екран N абзаців (N вводиться користувачем) за зразком:
+	</p>
+	<script>
+		let numberOfParagraphs = parseInt(prompt("Кількість абзаців:", "1"))
+		document.write(`Кількість абзаців:${numberOfParagraphs}`)
+		for (let i = 1; i <= numberOfParagraphs; i++) {
+			document.write(`<h1>Заголовок ${i}</h1>`)
+			for (let j = 1; j <= i; j++) {
+				document.write(`<p>Розділ ${i}, параграф ${j}</p>`)
+			}
+		}
+	</script>
+
+</body>
+
+</html>

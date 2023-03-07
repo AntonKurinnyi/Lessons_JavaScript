@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework №5</title>
+</head>
+
+<body style="background-color: rgb(181, 181, 155)">
+	<h2>Задача №8</h2>
+	<p>
+		Користувач загадує число. За 3 спроби комп’ютер намагається вгадати число користувача (використати confirm).
+	</p>
+	<script>
+		let userNumber = parseInt(prompt("Загадайте число від 1 до 5:", "1"))
+		for (let i = 1; i <= 3; i++) {
+			const numberOfComp = Math.floor(Math.random() * 5) + 1
+			let confirmUser = confirm(`Спроба №${i}. Це число ${numberOfComp}?`)
+			if (confirmUser) {
+				document.write(`Комп'ютер вгадав!`)
+				break
+			}
+			if (i === 3) document.write(`Комп'ютер не вгадав`)
+		}
+	</script>
+</body>
+
+</html>

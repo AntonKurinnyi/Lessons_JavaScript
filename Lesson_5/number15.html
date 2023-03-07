@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework №5</title>
+</head>
+
+<body style="background-color: rgb(181, 181, 155)">
+	<h2>Задача №15</h2>
+	<p>
+		Користувач поступово вводить показники температури протягом року. Знайти середню температуру.
+	</p>
+	<script>
+		let sumTemperature = 0
+		let counter = 0
+		for (let i = 0; i < 12; i++, counter++) {
+			let temperature = parseInt(prompt("Введіть показники температури 12 разів", "1"))
+			if (!isFinite(temperature)) break
+			sumTemperature += temperature
+		}
+		let averTemperature = sumTemperature / counter
+		document.write(`Середня температура: ${Math.ceil(averTemperature)}&#176C`)
+	</script>
+</body>
+
+</html>

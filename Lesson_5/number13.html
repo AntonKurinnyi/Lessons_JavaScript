@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework №5</title>
+</head>
+
+<body style="background-color: rgb(181, 181, 155)">
+	<h2>Задача №13</h2>
+	<p>
+		Морський бій. Комп’ютер випадково розташовує одиночний корабель на полі розміром N*M. Маючи К снарядів користувач
+		намагається потопити корабель.
+	</p>
+	<script>
+		const userSize = parseInt(prompt("Введіть розмір поля N*M", "1"))
+		let numberOfProjectiles = parseInt(prompt("Введіть кількість снарядів K", "1"))
+
+		shipX = Math.floor(Math.random() * userSize) + 1
+		shipY = Math.floor(Math.random() * userSize) + 1
+
+		const shipPlace = String(shipX) + String(shipY)
+		for (let i = 1; i <= numberOfProjectiles; i++) {
+			const userX = prompt("Введіть координати по х")
+			const userY = prompt("Введіть координати по y")
+
+			let userPlace = userX + userY
+			if (shipPlace === userPlace) {
+				document.write(`Ви потопили корабель`)
+				break
+			}
+			if (i === numberOfProjectiles)
+				document.write(`На жаль Ви не потопили корабель`)
+		}
+	</script>
+</body>
+
+</html>

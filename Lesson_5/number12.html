@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework №5</title>
+</head>
+
+<body style="background-color: rgb(181, 181, 155)">
+	<h2>Задача №12</h2>
+	<p>
+		Ігровий автомат. Випадково вибираємо зображення у 3 позиціях. Вибір у кожній позиції вибирається як одне з
+		чотирьох
+		зображень. Вивести ці зображення і повідомити виграш користувача (три перших зображення 100 грн, три других – 200,
+		три
+		третіх – 500, три четвертих зображення – 1000грн). Використати цикли і switch (для вибору зображення за номером).
+	</p>
+	<script>
+		let position = ""
+		for (let i = 0; i < 3; i++) {
+			let numberOfImage = Math.floor(Math.random() * 4) + 1
+			position += String(numberOfImage)
+			document.write(`<img src="img/${numberOfImage}.jpg" width="120" height="120" />`)
+		}
+		let result
+		switch (position) {
+			case "111":
+				result = "Ви виграли 100 грн."
+				break
+			case "222":
+				result = "Ви виграли 200 грн."
+				break
+			case "333":
+				result = "Ви виграли 500 грн."
+				break
+			case "444":
+				result = "Ви виграли 1000 грн."
+				break
+			default:
+				result = "Оновіть сторінку ще раз!"
+				break
+		}
+		document.write(`<br>${result}`)
+	</script>
+</body>
+
+</html>
