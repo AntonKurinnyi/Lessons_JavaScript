@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework №8</title>
+</head>
+
+<body style="background-color: rgb(181, 181, 155); font-size: 20px;">
+	<h2>Задача 4.</h2>
+	<p>
+		Дано послідовність номерів автомобілів. Підрахувати кількість номерів, які :
+	<ul>
+		<li>починаються на букву «А»;
+		</li>
+		<li>перша і остання літери співпадають;
+		</li>
+		<li>складаються з більше ніж 5 символів;
+		</li>
+	</ul>
+	</p>
+	<script>
+		function getNumberWithFirstLetter(plates, letter) {
+			let firstAPlates = 0
+			for (let i = 0; i < plates.length; i++) {
+				if (plates[i][0] === letter) firstAPlates++
+			}
+			return firstAPlates
+		}
+
+		function getNumberFirstAndLastEqual(plates) {
+			let equalNumber = 0
+			for (let i = 0; i < plates.length; i++) {
+				if (plates[i][0] === plates[i].at(-1))
+					equalNumber++
+
+			}
+			return equalNumber
+		}
+
+		function getNumberWhenLengthMore5(plates) {
+			let lengthNumber = 0
+			for (let i = 0; i < plates.length; i++) {
+				if (plates[i].length > 5) lengthNumber++
+			}
+			return lengthNumber
+		}
+
+		const vehiclesPlates = ['AA123AA', 'BC12BC', 'RY6783YR', 'AR123RA', 'ATE34C', 'Z23E', 'LK78KL', 'UY789H', 'ER23RE', 'DF34E']
+		const firstLetterNumber = getNumberWithFirstLetter(vehiclesPlates, 'A')
+		const firstAndLastEqual = getNumberFirstAndLastEqual(vehiclesPlates)
+		const lengthMoreThen5 = getNumberWhenLengthMore5(vehiclesPlates)
+
+		document.write(`Номера автомобілів : ${vehiclesPlates} <br>`)
+		document.write(`Кількість номерів, які : <br>Починаються на літеру "А" : ${firstLetterNumber}<br>`)
+		document.write(`Перша і остання літери співпадають : ${firstAndLastEqual}<br>`)
+		document.write(`Складаються з більше ніж 5 символів : ${lengthMoreThen5}`)
+	</script>
+</body>
+
+</html>

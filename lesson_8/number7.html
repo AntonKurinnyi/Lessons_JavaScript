@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework №8</title>
+</head>
+
+<body style="background-color: rgb(181, 181, 155); font-size: 20px;">
+	<h2>Задача 7.</h2>
+	<p>
+		Дано послідовність платіжок протягом року. Знайти сумарну кількість грошей за:
+	<ol>
+		<li>за весь рік;</li>
+		<li>у першій половині року;
+		</li>
+		<li>у другій половині року;</li>
+		<li>за літо;</li>
+		<li>за ІІ квартал;</li>
+		<li>за парні місяці (з парними номерами);</li>
+		<li>за місяці, які є початковими у сезоні (весна, літо, осінь, зима).
+		</li>
+	</ol>
+	</p>
+
+	<script>
+		function getPaymentsSumInRange(payments, startMonth, endMonth) {
+			let sum = 0
+			for (let month = startMonth; month <= endMonth; month++) {
+				sum += payments[month - 1]
+			}
+			return sum
+		}
+
+		function getEvenPaymentsSum(payments) {
+			let sum = 0
+			for (let i = 1; i <= payments.length; i++) {
+				if (i % 2 === 0) sum += payments[i - 1]
+			}
+			return sum
+		}
+
+		function getPaymentsSumFirstMonthOfSeason(payments) {
+			let sum = 0
+			for (let i = 1; i <= payments.length; i++) {
+				if (i % 3 === 0) sum += payments[i - 1]
+			}
+			return sum
+		}
+
+		function getRandomArray(valuesNum, min, max) {
+			let arr = []
+			for (let i = 0; i < valuesNum; i++) {
+				const randNumber = min + Math.floor(Math.random() * (max - min + 1))
+				arr.push(randNumber)
+			}
+			return arr
+		}
+
+		const annualPayments = getRandomArray(12, 1, 10)
+		const sumPerYear = getPaymentsSumInRange(annualPayments, 1, 12)
+		const sumFirstHalfYear = getPaymentsSumInRange(annualPayments, 1, 6)
+		const sumSecondHalfYear = getPaymentsSumInRange(annualPayments, 7, 12)
+		const sumOfSummer = getPaymentsSumInRange(annualPayments, 6, 8)
+		const sumPerQuarter = getPaymentsSumInRange(annualPayments, 4, 6)
+		const sumEvenMonths = getEvenPaymentsSum(annualPayments)
+		const sumFirstMonthsOfSeason = getPaymentsSumFirstMonthOfSeason(annualPayments)
+
+		document.write(`1) Сума за весь рік - ${sumPerYear} грн.<br>`)
+		document.write(`2) Сума за першу половину року - ${sumFirstHalfYear} грн.<br>`)
+		document.write(`3) Сума за другу половину року - ${sumSecondHalfYear} грн.<br>`)
+		document.write(`4) Сума за літо - ${sumOfSummer} грн.<br>`)
+		document.write(`5) Сума за II квартал - ${sumPerQuarter} грн.<br>`)
+		document.write(`6) Сума за парні місяці - ${sumEvenMonths} грн.<br>`)
+		document.write(`7) Сума за місяці, які є початковими у сезоні - ${sumFirstMonthsOfSeason} грн.`)
+	</script>
+</body>
+
+</html>

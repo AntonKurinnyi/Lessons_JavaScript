@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework №8</title>
+</head>
+
+<body style="background-color: rgb(181, 181, 155); font-size: 20px;">
+	<h2>Задача 9.</h2>
+	<p>
+		Морський бій. Користувач вводить кількість клітинок одновимірного масиву та
+		кількість одиночних кораблів. Комп’ютер довільно розміщує ці одиночні кораблі у масиві
+		по один у клітинці (якщо у клітинці 0, то клітинка пуста, якщо 1 – то це означає, що там є
+		корабель. Користувач вводить номер клітинки, куди стріляє. Гра продовжується до тих пір,
+		поки не будуть потоплені усі кораблі.
+	</p>
+
+	<script>
+		function getFieldSize() {
+			return parseInt(prompt('Введіть розмір поля', 'X*X'))
+		}
+
+		function getShipsNumber() {
+			return parseInt(prompt('Введіть кількість кораблів', '1'))
+		}
+
+		function getRandShipPlace(min, max) {
+			return min + Math.floor(Math.random() * (max - min + 1))
+		}
+
+		function getFreeCell(field) {
+			let shipIndex
+			const lastIndex = field.length - 1
+			do {
+				shipIndex = getRandShipPlace(0, lastIndex)
+			} while (field[shipIndex] === 1)
+
+			return shipIndex
+		}
+
+		function generateGameField(fieldSize, shipsNumber) {
+			const gameField = new Array(fieldSize).fill(0)
+			let shipIndex
+			for (let i = 0; i < shipsNumber; i++) {
+				shipIndex = getFreeCell(gameField)
+				gameField[shipIndex] = 1
+			}
+			return gameField
+		}
+
+		function startGame(gameField, shipsNumber) {
+			let usedIndexes = [], tries = 0
+			do {
+				const userShotIndex = parseInt(prompt(`Введіть індекс куди зробити постріл (1 - ${gameField.length})\nВикористані клітинки ${usedIndexes}`)) - 1
+
+				if (gameField[userShotIndex] === 1) {
+					alert('Ви попали')
+					shipsNumber--
+					gameField[userShotIndex] = 0
+				} else alert('Ви промазали')
+
+				usedIndexes.push(userShotIndex + 1)
+				tries++
+			} while (shipsNumber > 0)
+			alert('Кінець гри')
+			return tries
+		}
+
+		const fieldSize = getFieldSize()
+		const shipsNum = getShipsNumber()
+		const gameField = generateGameField(fieldSize, shipsNum)
+		const game = startGame(gameField, shipsNum)
+
+		document.write(`Ви потопили ${shipsNum} кораблів за ${game} пострілів`)
+	</script>
+</body>
+
+</html>

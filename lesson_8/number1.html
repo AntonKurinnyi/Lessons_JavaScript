@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework №8</title>
+</head>
+
+<body style="background-color: rgb(181, 181, 155); font-size: 20px;">
+	<h2>Задача 1.</h2>
+	<p>
+		Дано масив, який містить оцінки з К предметів. Знайти середній бал і з’ясувати
+		до якої категорії він відноситься (відмінник, двієчник (має хоча би одну двійку),
+		хорошист (оцінки добре і відмінно), трієчник(є хоча би одна трійка)).
+	</p>
+	<script>
+		function getRandomNum(min, max) {
+			return Math.floor(Math.random() * (max - min + 1)) + min
+		}
+
+		function getArrayOfGrades(gradesNumber) {
+			let grades = []
+			for (let i = 0; i < gradesNumber; i++) {
+				grades[i] = getRandomNum(2, 5)
+			}
+			return grades
+		}
+
+		function getGradesAvg(grades) {
+			let gradesSum = 0
+			for (let i = 0; i < grades.length; i++) {
+				gradesSum += grades[i]
+			}
+			return gradesSum / grades.length
+		}
+
+		function checkStudentCategory(grades) {
+			let minGrade = +Infinity
+			let category
+
+			for (let i = 0; i < grades.length; i++) {
+				if (grades[i] < minGrade) minGrade = grades[i]
+			}
+
+			if (minGrade === 2) category = 'Двієчник'
+			else if (minGrade === 3) category = 'Трієчник'
+			else if (minGrade === 4) category = 'Хорошист'
+			else category = 'Відмінник'
+
+			return category
+		}
+
+		const gradesNumber = parseInt(prompt('Введіть кількість оцінок', '2'))
+		const studentsGrades = getArrayOfGrades(gradesNumber)
+		const studentsGradesAvg = getGradesAvg(studentsGrades)
+		const studentPerf = checkStudentCategory(studentsGrades)
+
+		document.write(`<div> Оцінки студента : ${studentsGrades} </div>`)
+		document.write(`<div> Середня оцінка студента : ${studentsGradesAvg.toFixed(1)} </div>`)
+		document.write(`<div> Студент є : "${studentPerf}" </div>`)
+	</script>
+
+</body>
+
+</html>

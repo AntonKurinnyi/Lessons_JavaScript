@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework №8</title>
+</head>
+
+<body style="background-color: rgb(181, 181, 155); font-size: 20px;">
+	<h2>Задача 6.</h2>
+	<p>
+	<div>Дано послідовність цін товарів та назв (у окремих масивах). Вивести на екран ті,
+		які може собі дозволити користувач (кількість грошей задається).
+	</div>
+	<div>Приклад збереження даних
+	</div>
+	<div>let productsPrices = [1000, 20, 31]
+	</div>
+	<div>let productsTitles = [‘cheese’, ‘juice’, ‘bread’]</div>
+	</p>
+	<script>
+		function getRandomNumber(min, max) {
+			return Math.floor(Math.random() * (max - min + 1)) + min
+		}
+
+		function getPricesArray(pricesNumber) {
+			let grades = []
+			for (let i = 0; i < pricesNumber; i++) {
+				grades[i] = getRandomNumber(1, 15)
+			}
+			return grades
+		}
+
+		function enoughMoneyFor(customerMoney, productNames, productsPrices) {
+			let canBuyProductName = []
+			let canBuyProductPrice = []
+
+			for (let i = 0; i < productsPrices.length; i++) {
+				if (customerMoney - productsPrices[i] >= 0) {
+					canBuyProductName.push(productNames[i])
+					canBuyProductPrice.push(productsPrices[i])
+				}
+			}
+			return [canBuyProductName, canBuyProductPrice]
+		}
+
+		function getResultToShow(currentMoney, canBuyName, canBuyPrice) {
+			let showResult = `У Вас є ${currentMoney} грн.<br>За ці гроші Ви можете купити :<br>`
+			for (let i = 0; i < canBuyName.length; i++) {
+				showResult += `${canBuyName[i]} - ${canBuyPrice[i]} грн<br>`
+			}
+			return showResult
+		}
+
+		const productsTitles = ['Сир', 'М\'ясо', 'Сік', 'Молоко', 'Зелень']
+		const productsPrices = getPricesArray(productsTitles.length)
+		const money = parseFloat(prompt('Скільки у Вас є грошей?', '1'))
+		const [products, prices] = enoughMoneyFor(money, productsTitles, productsPrices)
+		const result = getResultToShow(money, products, prices)
+
+		document.write(result)
+
+	</script>
+</body>
+
+</html>

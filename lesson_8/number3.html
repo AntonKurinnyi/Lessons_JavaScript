@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework №8</title>
+</head>
+
+<body style="background-color: rgb(181, 181, 155); font-size: 20px;">
+	<h2>Задача 3.</h2>
+	<p>
+		Дано масив імен учнів. З’ясувати скільки разів зустрічається ім’я «Іван».
+	</p>
+	<script>
+		function getNumbersOfSearchingName(namesList, name) {
+			let nameNumber = 0
+			for (let i = 0; i < namesList.length; i++) {
+				if (name === namesList[i]) nameNumber++
+			}
+			return nameNumber
+		}
+
+		const names = ['Олександр', 'Іван', 'Яна', 'Іван', 'Андрій', 'Іван', 'Микита', 'Ольга', 'Іван', 'Олеся', 'Іван']
+		const nameSearching = 'Іван'
+		const nameNumber = getNumbersOfSearchingName(names, nameSearching)
+
+		document.write(`Імʼя ${nameSearching} зустрічається : ${nameNumber} разів`)
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework №8</title>
+</head>
+
+<body style="background-color: rgb(181, 181, 155); font-size: 20px;">
+	<h2>Задача 5.</h2>
+	<p>
+		Дано послідовність оцінок учня. Підрахувати кількість:
+	<ol>
+		<li>двійок</li>
+		<li>кількість хороших оцінок (добре, відмінно);
+		</li>
+		<li>кількість оцінок, які нижче середнього.
+		</li>
+	</ol>
+	</p>
+	<script>
+		function getGradesAverage(grades) {
+			let gradesSum = 0
+			for (let i = 0; i < grades.length; i++) {
+				gradesSum += grades[i]
+			}
+			return gradesSum / grades.length
+		}
+
+		function getNumberOfBadGrades(grades) {
+			let numbersOf2 = 0
+			for (let grade of grades) {
+				if (grade === 2) numbersOf2++
+			}
+			return numbersOf2
+		}
+
+		function getNumbersGoodGrades(grades) {
+			let numbers4and5 = 0
+			for (let grade of grades) {
+				if (grade === 4 || grade === 5) numbers4and5++
+			}
+			return numbers4and5
+		}
+
+		function getNumbersOfGradesBelowAverage(grades, gradesAverage) {
+			let numbersOfBelowAverage = 0
+			for (let grade of grades) {
+				if (grade < gradesAverage) numbersOfBelowAverage++
+			}
+			return numbersOfBelowAverage
+		}
+
+		function getRandomNumber(min, max) {
+			return Math.floor(Math.random() * (max - min + 1)) + min
+		}
+
+		function getGradesArr(gradesNumber) {
+			let grades = []
+			for (let i = 0; i < gradesNumber; i++) {
+				grades[i] = getRandomNumber(2, 5)
+			}
+			return grades
+		}
+
+		const studentsGrades = getGradesArr(7)
+		const gradesAverage = getGradesAverage(studentsGrades)
+		const numbersOf2 = getNumberOfBadGrades(studentsGrades)
+		const numbers4and5 = getNumbersGoodGrades(studentsGrades)
+		const numOfGradesBelowAverage = getNumbersOfGradesBelowAverage(studentsGrades, gradesAverage)
+
+		document.write(`Оцінки учня : ${studentsGrades}<br>`)
+		document.write(`Кількість двійок: ${numbersOf2}<br>`)
+		document.write(`Кількість хороших оцінок (добре, відмінно) : ${numbers4and5}<br>`)
+		document.write(`Кількість оцінок, які нижче середнього : ${numOfGradesBelowAverage} (середня оцінка - ${gradesAverage.toFixed(1)})`)
+	</script>
+
+</body>
+
+</html>
