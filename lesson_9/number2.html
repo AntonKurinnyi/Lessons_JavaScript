@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework №9</title>
+</head>
+
+<body>
+	<h2>Задача 2.</h2>
+	<p>
+		Користувач вводить кількість елементів. Створити масив, у якому перша половина заповнена 1-цями, а друга заповнена
+		7-ками.
+	</p>
+	<script>
+		const numberOfElements = parseInt(prompt('Введіть кількість елементів масиву', '1'))
+
+		const halfOfElements = Math.floor(numberOfElements / 2);
+		const changedArray = new Array(numberOfElements).fill(1, 0, halfOfElements).fill(7, halfOfElements)
+
+		document.write(` Змінений масив з ${numberOfElements} елементів : ${changedArray}`)
+	</script>
+
+</body>
+
+</html>

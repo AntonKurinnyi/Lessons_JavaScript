@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework №9</title>
+</head>
+
+<body>
+	<h2>Задача 8.</h2>
+	<p>
+		Дано масив номерів авто. Сформувати новий масив тих, які починаються
+		на «А»
+	</p>
+
+	<script>
+		let arrPlatesCar = ['AA123AA', 'BC12BC', 'RY6783YR', 'AR123RA', 'ATE34C', 'Z23E', ' LK78KL', 'UY789H', 'AR23RE', 'AF34E']
+		document.write(`Масив номерів авто : [${arrPlatesCar}] <br>`)
+
+		const arrNumbersCarFirstLetterA = arrPlatesCar.filter(
+			(numberCar) => numberCar[0] === "A"
+		)
+
+		document.write(
+			`Масив номерів, які починаються на А» : [${arrNumbersCarFirstLetterA}]`
+		)
+	</script>
+</body>
+
+</html>

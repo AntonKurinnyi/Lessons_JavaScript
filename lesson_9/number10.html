@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework №9</title>
+</head>
+
+<body>
+	<h2>Задача 10.</h2>
+	<p>
+		Дано масив цін у грн. Податок складає 20%. Сформувати масив, який
+		буде містити величину сплаченого податку у грн.
+	</p>
+	<script>
+		const priceList = [22, 33, 44, 55, 66, 77, 88, 99]
+		const tax = 20
+		document.write(
+			`Дано масив цін у грн : [${priceList}] <br> 
+			Податок складає : ${tax}%<br> `
+		)
+		const taxAmount = priceList.map((element) => (element * 20) / 100);
+		document.write(
+			`Масив, що показує величину сплаченого податку у грн: [${taxAmount}]`
+		)
+	</script>
+
+</body>
+
+</html>

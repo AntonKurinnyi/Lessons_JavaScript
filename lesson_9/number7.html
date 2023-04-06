@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework №9</title>
+</head>
+
+<body>
+	<h2>Задача 7.</h2>
+	<p>
+		Дано масив цін. Змінити цей масив так, що на ціни товарів, які більші за
+		1000 грн. дати 30% знижки.
+	</p>
+
+	<script>
+		const priceList = [600, 1000, 1200, 900, 2000, 1005, 900, 1000, 700];
+		const discount = 30;
+		document.write(`Дано масив цін: [${priceList}] <br>`);
+		priceList.forEach((element, index, baseArrNum) => {
+			if (element > 1000)
+				baseArrNum[index] = element - (element * discount) / 100;
+		});
+		document.write(`Змінений масив : [${priceList}]`);
+	</script>
+</body>
+
+</html>

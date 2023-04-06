@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework №9</title>
+</head>
+
+<body>
+	<h2>Задача 4.</h2>
+	<p>
+		Дано масив елементів. Вивести на екран елементи, що більші за 100
+	</p>
+
+	<script>
+		const array = [150, 30, 5000, 15, 80, 400, 800, 78, 56, 678]
+		document.write(
+			`Даний масив елементів : [${array}] <br> 
+			Елементи, що більші за 100 : `
+		);
+		for (const arrNew of array) {
+			if (arrNew > 100) document.write(`${arrNew}, `)
+		}
+	</script>
+
+</body>
+
+</html>

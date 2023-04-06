@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework №9</title>
+</head>
+
+<body>
+	<h2>Задача 9.</h2>
+	<p>
+		Дано масив імен. Сформувати масив з перших літер цих імен.
+	</p>
+	<script>
+		const peoplesNames = ['Svitlana', 'Elia', 'Eva', 'Franco', 'Vano', 'Roma'];
+		document.write(`Дано масив імен : [${peoplesNames}] <br>`);
+		peoplesNamesFirstLatter = peoplesNames.map((element) => element[0]);
+		document.write(
+			`Масив з перших літер цих імен : [${peoplesNamesFirstLatter}]`
+		);
+	</script>
+
+</body>
+
+</html>

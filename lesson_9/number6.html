@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework №9</title>
+</head>
+
+<body>
+	<h2>Задача 6.</h2>
+	<p>
+		Дано масив елементів. Усі елементи, які більші за перший елемент
+		помножити на 2
+	</p>
+	<script>
+		const array = [60, -12, -9, 200, 10, 70, 61, 34, 235]
+		document.write(`Дано масив елементів: [${array}] <br>`)
+		array.forEach((element, index, baseArrNum) => {
+			if (element > baseArrNum[0]) baseArrNum[index] = element * 2
+		})
+		document.write(`Змінений масив : [${array}]`)
+	</script>
+
+</body>
+
+</html>
