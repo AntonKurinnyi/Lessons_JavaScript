@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework №10</title>
+</head>
+
+<body>
+	<h2>Задача 1.</h2>
+
+	<p>
+		Сформувати новий масив, у якому є тільки ті, що більші за 1000 грн.
+	</p>
+
+	<script>
+		const userQuantityPeriod = parseInt(prompt('Введіть період', '12'))
+
+		function getPricesValuableParers(period) {
+			let priceList = []
+			for (let i = 0; i < period; i++) {
+				const randomPrice = 1 + Math.floor(Math.random() * 10000)
+				priceList[i] = randomPrice
+			}
+			return priceList
+		}
+
+		const priceList = getPricesValuableParers(userQuantityPeriod)
+		document.write(`Масив цін :	[${priceList}] <br>`)
+
+		const newPriceListMore1000 = priceList.filter(price => price > 1000)
+		document.write(`Масив цін > 1000 :	[${newPriceListMore1000}]`)
+
+	</script>
+
+
+
+</body>
+
+</html>

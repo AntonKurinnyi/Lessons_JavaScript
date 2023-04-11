@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework №10</title>
+</head>
+
+<body>
+	<h2>Задача 6.</h2>
+	<p>
+		Визначити, чи є ціна, що менше 1000
+	</p>
+	<script>
+		const userQuantityPeriod = parseInt(prompt('Введіть період', '12'))
+
+		function getPricesValuableParers(period) {
+			let priceList = []
+			for (let i = 0; i < period; i++) {
+				const randomPrice = 1 + Math.floor(Math.random() * 10000)
+				priceList[i] = randomPrice
+			}
+			return priceList
+		}
+
+		const priceList = getPricesValuableParers(userQuantityPeriod)
+		document.write(`Масив цін :	[${priceList}] <br>`)
+
+		const resultLessThan1000 = priceList.some(price => price < 1000)
+		document.write(`Чи є ціна, що < 1000 : ${resultLessThan1000}`)
+
+
+	</script>
+
+</body>
+
+</html>

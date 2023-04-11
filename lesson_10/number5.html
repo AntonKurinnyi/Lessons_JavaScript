@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework №10</title>
+</head>
+
+<body>
+	<h2>Задача 5.</h2>
+	<p>
+		Підрахувати кількість змін цін
+	</p>
+	<script>
+		const userQuantityPeriod = parseInt(prompt('Введіть період', '12'))
+
+		function getPricesValuableParers(period) {
+			let priceList = []
+			for (let i = 0; i < period; i++) {
+				const randomPrice = 1 + Math.floor(Math.random() * 10000)
+				priceList[i] = randomPrice
+			}
+			return priceList
+		}
+
+		const priceList = getPricesValuableParers(userQuantityPeriod)
+		document.write(`Масив цін:	[${priceList}] <br>`)
+
+		let counter = 0
+		const quantityСhangePrice = priceList.reduce((prevSum, price) => {
+			price !== prevSum ? counter + 1 : counter
+		})
+		document.write(`Кількість змін цін : ${counter}`)
+
+	</script>
+
+</body>
+
+</html>
