@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework №11</title>
+</head>
+
+<body>
+	<h2>Задача 3.</h2>
+	<div>
+		<p>
+			Морський бій. Випадковим чином на двовимірному полі розміром 6*6
+			розташовується 5 кораблів. Користувач стріляє вказуючи координати. Гра продовжується поки
+			не потоплено усі кораблі або у користувача не закінчаться снаряди.
+		</p>
+	</div>
+
+
+	<script>
+		function getRandNum(min, max) {
+			return min + Math.floor(Math.random() * (max - min + 1))
+		}
+
+		function getRandTableArr(arrSize) {
+			let row, field = []
+			for (let i = 0; i < arrSize; i++) {
+				row = new Array(arrSize).fill(0)
+				field.push(row)
+			}
+			return field
+		}
+
+		function getFreeCell(field) {
+			let indexRow, indexCol
+			const lastIndex = field.length - 1
+			do {
+				indexRow = getRandNum(0, lastIndex)
+				indexCol = getRandNum(0, lastIndex)
+			} while (field[indexRow][indexCol] === 1)
+
+			return [indexRow, indexCol]
+		}
+
+		function generateGameField(fieldSize, shipsNumber) {
+			const gameField = getRandTableArr(fieldSize)
+			let shipIndexCol, shipIndexRow
+			for (let i = 0; i < shipsNumber; i++) {
+				[shipIndexRow, shipIndexCol] = getFreeCell(gameField)
+				gameField[shipIndexRow][shipIndexCol] = 1
+			}
+			return gameField
+		}
+
+		function startGame(gameField, shipsNumber, ammoNum) {
+			let usedIndexes = []
+			let tries = 0, info
+			do {
+				info = `Залишилось пострілів: ${ammoNum}\nВикористані індекси [${usedIndexes.join('][')}]`
+				const userIndexRow = parseInt(prompt(`Введіть номер рядка для пострілу (1 - ${gameField.length})\n${info}`)) - 1
+				const userIndexCol = parseInt(prompt(`Введіть номер стовпця для пострілу (1 - ${gameField.length})\n${info}`)) - 1
+
+				if (gameField[userIndexRow][userIndexCol] === 1) {
+					alert('Ви попали')
+					shipsNumber--
+					gameField[userIndexRow][userIndexCol] = 0
+				} else alert('Промах')
+
+				usedIndexes.push([userIndexRow + 1, userIndexCol + 1])
+				ammoNum--
+				tries++
+			} while (shipsNumber > 0 && ammoNum > 0)
+			alert('Кінець гри')
+			return [tries, shipsNumber]
+		}
+
+		const fieldSize = 6
+		const shipsNum = 5
+		const ammunitionNum = 10
+
+		const gameField = generateGameField(fieldSize, shipsNum)
+		const [shots, afloatShips] = startGame(gameField, shipsNum, ammunitionNum)
+
+		document.write(`Ви потопили ${shipsNum - afloatShips} кораблів за ${shots} пострілів`)
+	</script>
+
+</body>
+
+</html>
