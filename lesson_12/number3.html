@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework №12</title>
+</head>
+
+<body>
+	<h2>Задача 3.</h2>
+	<div>
+		<p>
+			Дано масив 30 випадкових цілих чисел. Підрахувати скільки було обмінів під час сортування включеннями.
+		</p>
+	</div>
+
+	<script>
+		function getRandomNumber(maxNumber) {
+			let randomItem = Math.floor(Math.random() * maxNumber + 1)
+			return randomItem
+		}
+
+		function getRandomArr(maxNumber, amountOfNumber) {
+			let randomArr = []
+			for (let i = 0; i < amountOfNumber; i++) {
+				let randomNumber = getRandomNumber(maxNumber)
+				randomArr.push(randomNumber)
+			}
+			return randomArr
+		}
+
+		const maxNumber = parseInt(prompt('Введіть максимальне число в масиві', '5'))
+		const amountOfNumber = 30
+		const randomArr = getRandomArr(maxNumber, amountOfNumber)
+
+		document.write(`Масив з 30 випадкових чисел : [${randomArr}] <br>`)
+		function sortInclusion(randomArr) {
+			let counter = 0
+			for (let k = 1; k < randomArr.length; k++) {
+				let currentElement = randomArr[k]
+				let i = k - 1
+				while (i >= 0 && randomArr[i] > currentElement) {
+					randomArr[i + 1] = randomArr[i]
+					i = i - 1
+					counter++
+				}
+				randomArr[i + 1] = currentElement
+			}
+			return counter++
+		}
+
+		document.write(`Kількість обмінів під час сортування включеннями : ${sortInclusion(randomArr)}`)
+
+	</script>
+
+
+</body>
+
+</html>

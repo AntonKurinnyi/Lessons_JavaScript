@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework №12</title>
+</head>
+
+<body>
+	<h2>Задача 5.</h2>
+	<div>
+		<p>
+			Дано масив імен. Застосовуючи відповідне сортування та бінарний пошук визначити, чи є у масиві ім’я «Olga» і
+			під яким індексом.
+		</p>
+	</div>
+
+	<script>
+		let arrayOfNames = ['John', 'Peter', 'Ogua', 'Ivan', 'Kate', 'Olga', 'Bob', 'Julia', 'Vanessa', 'Tony']
+
+		document.write(`Масив імен : [${arrayOfNames}]<br>`)
+		arrayOfNames.sort()
+		document.write(`Відсортований масив імен: [${arrayOfNames}]<br>`)
+
+		function findIndex(arrayOfNames, name) {
+			let start = 0
+			let end = arrayOfNames.length - 1
+			while (start <= end) {
+				const middle = Math.floor((start + end) / 2)
+				if (arrayOfNames[middle] === name) return middle
+				if (arrayOfNames[middle] > name) end = middle - 1
+				if (arrayOfNames[middle] < name) start = middle + 1
+			}
+			return -1
+		}
+
+		const indexName = findIndex(arrayOfNames, 'Olga')
+		if (indexName === -1)
+			document.write(`Ім'я "Olga" у масиві не знайдено`)
+		else
+			document.write(`Ім'я "Olga" у масиві під індексом : ${indexName}`)
+
+	</script>
+
+
+</body>
+
+</html>

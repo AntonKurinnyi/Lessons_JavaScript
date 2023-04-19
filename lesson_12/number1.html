@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework №12</title>
+</head>
+
+<body>
+	<h2>Задача 1.</h2>
+	<div>
+		<p>
+			Дано масив 30 випадкових цілих чисел. Підрахувати скільки було обмінів під час сортування бульбашкою
+		</p>
+	</div>
+
+	<script>
+		function getRandomNumber(maxNumber) {
+			let randomItem = Math.floor(Math.random() * maxNumber + 1)
+			return randomItem
+		}
+
+		function getRandomArr(maxNumber, amountOfNumber) {
+			let randomArr = []
+			for (let i = 0; i < amountOfNumber; i++) {
+				let randomNumber = getRandomNumber(maxNumber)
+				randomArr.push(randomNumber)
+			}
+			return randomArr
+		}
+
+		const maxNumber = parseInt(prompt('Введіть максимальне число в масиві', '5'))
+		const amountOfNumber = 30
+		const randomArr = getRandomArr(maxNumber, amountOfNumber)
+
+		document.write(`Масив з 30 випадкових чисел : [${randomArr}]<br>`)
+
+		function bubbleSort(randomArr) {
+			let changed
+			let counter = 0
+			do {
+				changed = false
+				for (let i = 1; i < randomArr.length; i++) {
+					if (randomArr[i - 1] > randomArr[i]) {
+						let temp = randomArr[i - 1]
+						randomArr[i - 1] = randomArr[i]
+						randomArr[i] = temp
+						changed = true
+						counter++
+					}
+				}
+			} while (changed)
+			return counter
+		}
+
+		document.write(`Кількість обмінів під час сортування бульбашкою : ${bubbleSort(randomArr)}`
+		)
+
+	</script>
+
+</body>
+
+</html>
