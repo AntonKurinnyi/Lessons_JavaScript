@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework №13</title>
+</head>
+
+<body>
+	<h2>Задача 2.</h2>
+	<div>
+		<p>
+			Нехай x<sub>0</sub> = x<sub>1</sub> = 1, x<sub>i</sub> = x<sub>i-1</sub> + 2x<sub>i-2</sub>, де i = 2,3,... .
+			Визначити x<sub>n</sub>. Розв’язати з використанням рекурсивних і нерекурсивних алгоритмів.
+		</p>
+	</div>
+
+	<script>
+
+		function getX_n(number) {
+			if (number === 0 || number === 1) return 1
+			else {
+				let sum
+				let n_0 = 1
+				let n_1 = 1
+				for (let i = 2; i <= number; i++) {
+					sum = n_1 + 2 * n_0
+					n_0 = n_1
+					n_1 = sum
+				}
+				return sum
+			}
+		}
+		let x_n = getX_n(3)
+		document.write(`Визначення x<sub>n</sub> з використанням нерекурсивного алгоритма : ${x_n} <br> `)
+
+
+		function getRekursX_n(number) {
+			if (number === 0 || number === 1) return 1
+			else return getRekursX_n(number - 1) + 2 * getRekursX_n(number - 2)
+		}
+		let rekursX_n = getRekursX_n(3)
+		document.write(`Визначення x<sub>n</sub> з використанням рекурсивного алгоритма : ${rekursX_n}`)
+
+	</script>
+
+</body>
+
+</html>

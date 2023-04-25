@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework №13</title>
+</head>
+
+<body>
+	<h2>Задача 5.</h2>
+	<div>
+		<p>
+			Тренажер додавання. Кожні 10 секунд користувачу задають випадковий приклад з
+			додавання двох цифр і робиться перевірка.
+		</p>
+	</div>
+
+	<script>
+
+		let sumIntervalID = setInterval(getSum, 10000, 1, 40)
+
+		function getRandomNumber(minValue, maxValue) {
+			return minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+		}
+
+		function getSum(minValue, maxValue) {
+			let firstNumber = getRandomNumber(minValue, maxValue)
+			let secondNumber = getRandomNumber(minValue, maxValue)
+			let userSum = parseInt(prompt(`${firstNumber} + ${secondNumber} = ?`))
+			let trueSum = firstNumber + secondNumber
+			return (userSum === trueSum) ? alert('Правильно!') : alert('Неправильно!')
+		}
+
+	</script>
+</body>
+
+</html>

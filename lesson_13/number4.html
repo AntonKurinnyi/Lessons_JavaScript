@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework №13</title>
+</head>
+
+<body>
+	<h2>Задача 4.</h2>
+	<div>
+		<p>
+			З використанням замикань розробити ітератор, тобто функцію, що буде поступово за
+			окремими викликами видавати по одну букву наперед заданого слова. З використанням нього
+			розробити гру «Перекладач». Виводимо для користувача опис цього слова і по одну букву
+			користувач вводить переклад цього слова. Підрахувати кількість вгаданих букв.
+		</p>
+	</div>
+
+	<script>
+
+		function getLetter(word) {
+			let letter, counter = 0
+			function getSymbol() {
+				if (counter === word.length) counter = 0
+				letter = counter
+				counter++
+				return word[letter]
+			}
+			return getSymbol
+		}
+		let word = 'teacher'
+		let guessedWord = getLetter(word)
+
+		function translatorGame(letter, word) {
+			let userCounter = 0
+			for (let i = 0; i < word.length; i++) {
+				let userLetter = prompt('Хто вчить дітей?Введіть одну букву', 'a')
+				let wordLetter = letter()
+				if (userLetter === wordLetter) userCounter++
+			}
+			return userCounter
+		}
+
+		const userRound = translatorGame(guessedWord, word)
+		if (userRound === 7)
+			document.write(`Ви відгадали слово ${word}<br>`)
+		else
+			document.write(`Кількість вгаданих букв : ${userRound}`)
+
+	</script>
+
+</body>
+
+</html>

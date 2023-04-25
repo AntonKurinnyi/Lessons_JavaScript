@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework №13</title>
+</head>
+
+<body>
+	<h2>Задача 6.</h2>
+	<div>
+		<p>
+			Через 20 секунд перейти на сайт ukr.net. Для цього через 20 секунд після відкриття
+			треба виконати команду <mark>window.location.href = 'https://www.ukr.net/</mark>
+		</p>
+	</div>
+
+	<script>
+
+		function goToSite(address) {
+			return window.location.href = address
+		}
+
+		document.write('Перехід на сайт <mark>ukr.net</mark> відбудеться через 20 секунд')
+
+		let goToTimeoutID = setTimeout(
+			goToSite, 20000, 'https://www.ukr.net/'
+		)
+
+	</script>
+</body>
+
+</html>

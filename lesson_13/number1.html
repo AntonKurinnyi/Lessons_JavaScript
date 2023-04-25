@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework №13</title>
+</head>
+
+<body>
+	<h2>Задача 1.</h2>
+	<div>
+		<p>
+			Нехай x<sub>0</sub> = 1, x<sub>i</sub> = x<sub>i-1</sub> + 2i, де i = 1,2,... . Визначити x<sub>10</sub>.
+			Розв’язати з використанням рекурсивних і нерекурсивних алгоритмів.
+		</p>
+	</div>
+
+	<script>
+
+		function getX_10(number) {
+			if (number == 0) return 1
+			else {
+				let x_0 = 1
+				let sum;
+				for (let i = 1; i <= number; i++) {
+					sum = x_0 + 2 * [i]
+					x_0 = sum
+				}
+				return sum
+			}
+		}
+		let x_10 = getX_10(10)
+		document.write(`Визначення x<sub>10</sub>  з використанням нерекурсивного алгоритма : ${x_10}<br>`)
+
+		function getRekursMetodX_10(number) {
+			if (number === 0) return 1
+			else return getRekursMetodX_10(number - 1) + 2 * number
+		}
+		let rekursX_10 = getRekursMetodX_10(10)
+		document.write(`Визначення x<sub>10</sub> з використанням рекурсивного алгоритма : ${rekursX_10}`)
+
+	</script>
+
+</body>
+
+</html>
