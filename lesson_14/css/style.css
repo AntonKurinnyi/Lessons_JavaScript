@@ -1,0 +1,23 @@
+
+@import url(https://fonts.googleapis.com/css?family=Inter:regular,500,600&display=swap);
+
+
+body {
+font-family: "Inter", sans-serif;
+background-color:rgb(203, 203, 185);
+line-height: 1.5;
+font-weight: 500;
+font-size: 20px;
+margin: 30px;
+}
+
+a{
+	display: inline-block;
+	margin: 0 auto 0 45%;
+}
+
+h1{
+	text-align: center;
+}
+
+

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework №14</title>
+	<link rel="icon" type="image/x-icon" href="img/icon.ico">
+</head>
+
+<body>
+	<h2>Задача 2.</h2>
+	<div>
+		<p>
+			Розробити функцію, у яку передають об’єкт (день, місяць, рік). Визначити, який буде рік через N місяців.
+		</p>
+	</div>
+
+	<script>
+
+		const dateObj = {
+			day: 4,
+			month: 5,
+			year: 2023
+		}
+
+		function getYearByAmountOfMonths(obj, monthsAmount) {
+			return Math.floor((obj.month + monthsAmount - 1) / 12) + obj.year
+		}
+
+		const userMonthsAmount = parseInt(prompt('Введіть кількість місяців', '1'))
+		document.write(`Початковий обʼєкт : ${JSON.stringify(dateObj)} <br>
+	   Рік через ${userMonthsAmount} місяців : ${getYearByAmountOfMonths(dateObj, userMonthsAmount)}`)
+
+	</script>
+</body>
+
+</html>

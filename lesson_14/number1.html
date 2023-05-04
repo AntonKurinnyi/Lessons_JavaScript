@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework №14</title>
+	<link rel="icon" type="image/x-icon" href="img/icon.ico">
+</head>
+
+<body>
+	<h2>Задача 1.</h2>
+	<div>
+		<p>
+			Описати масив об’єктів – сайтів розроблених компанією з такими властивостями
+		</p>
+		<p>----- Властивості ------</p>
+		<ul>
+			<li>назва компанії на час розробки (назву періодично змінюють)</li>
+			<li>власник компанії</li>
+			<li>спонсори (масив спонсорів)
+				<ul>
+					<li>прізвище спонсора</li>
+					<li>ім’я спонсора</li>
+					<li>сума вкладень спонсора</li>
+				</ul>
+			</li>
+			<li>рік випуску</li>
+			<li>вартість сайту</li>
+		</ul>
+		<p>Знайти:</p>
+		<ol>
+			<li>загальну вартість усіх сайтів</li>
+			<li>кількість сайтів, що було зроблено між 2000 та 2009 рр</li>
+			<li>кількість сайтів, де сума спонсорських вкладень була більшою за 100000</li>
+			<li>створити загальний список усіх спонсорів (поки можуть повторюватись, просто зібрати усі у масив)</li>
+			<li>знайти рік, коли прибуток був найбільшим</li>
+			<li>упорядкувати список за спаданням прибутку</li>
+			<li>створити 2 окремих списки з копіями об’єктів, що містять сайти з вартість до 10000 і більше 10000</li>
+		</ol>
+	</div>
+
+
+	<h4>Розвʼязок</h4>
+
+	<script>
+
+		const developedSites = [
+			{
+				companyName: 'Company 1',
+				companyOwner: 'Franco Frank',
+				sponsors: [
+					{
+						surname: 'Beggins',
+						name: 'Bilbo',
+						investmentAmount: 9999
+					},
+					{
+						surname: 'Beggins',
+						name: 'Frodo',
+						investmentAmount: 8888
+					}
+				],
+				yearOfRelease: 1998,
+				siteCost: 34000
+			},
+			{
+				companyName: 'Company 3',
+				companyOwner: 'Bimbo Bamba',
+				sponsors: [
+					{
+						surname: 'Maclaud',
+						name: 'Duncan',
+						investmentAmount: 78000
+					},
+					{
+						surname: 'Henry',
+						name: 'Tieri',
+						investmentAmount: 22000
+					}
+				],
+				yearOfRelease: 2005,
+				siteCost: 115000
+			},
+			{
+				companyName: 'Company 2',
+				companyOwner: 'Joseph Biden',
+				sponsors: [
+					{
+						surname: 'Johnson',
+						name: 'Boris',
+						investmentAmount: 400
+					},
+					{
+						surname: 'Shwarzeneger',
+						name: 'Arnold',
+						investmentAmount: 500
+					},
+					{
+						surname: 'Van Damm',
+						name: 'Jean Claud',
+						investmentAmount: 600
+					}
+				],
+				yearOfRelease: 2015,
+				siteCost: 8000
+			}
+		]
+
+
+
+		const totalCostOfSites = developedSites.reduce((prevValue, object) => prevValue + object.siteCost, 0)
+		document.write(`1. Загальна вартість усіх сайтів : ${totalCostOfSites}<br>`)
+
+
+		const sitesAmountFrom2000To2009 = developedSites.reduce((prevValue, object) => (
+			object.yearOfRelease >= 2000 && object.yearOfRelease <= 2009 ? prevValue + 1 : prevValue
+		), 0)
+		document.write(`2. Кількість сайтів, що було зроблено між 2000 та 2009 рр : ${sitesAmountFrom2000To2009}<br>`)
+
+
+		const sitesAmountOfSponsorsSumOver100000 = developedSites.reduce((amount, site) => (
+			site.sponsors.reduce((sum, sponsor) => sum + sponsor.investmentAmount, 0) > 100000 ? amount + 1 : amount
+		), 0)
+		document.write(`3. Кількість сайтів, де сума спонсорських вкладень була більшою за 100000 : ${sitesAmountOfSponsorsSumOver100000}<br>`)
+
+
+		const sponsorsList = developedSites.map(object => object.sponsors.map(sponsor => `${sponsor.name} ${sponsor.surname}`))
+		document.write(`4. Список усіх спонсорів : ${sponsorsList}<br>`)
+
+
+		function getYearOfMaxProfit(objArr) {
+			let max = -Infinity
+			let findYear
+
+			for (const site of objArr)
+				if (site.siteCost > max) {
+					max = site.siteCost
+					findYear = site.yearOfRelease
+				}
+			return findYear
+		}
+		document.write(`5. Рік, коли прибуток був найбільшим : ${getYearOfMaxProfit(developedSites)}<br>`)
+
+
+
+
+		function insertSort(objArr) {
+
+			for (let k = 1; k < objArr.length; k++) {
+				const currentElement = objArr[k].siteCost
+				const currentObject = objArr[k]
+				let i = k - 1
+				while (i >= 0 && objArr[i].siteCost < currentElement) {
+					objArr[i + 1] = objArr[i]
+					i = i - 1
+				}
+				objArr[i + 1] = currentObject
+			}
+		}
+		insertSort(developedSites)
+
+		document.write('6. Упорядкувати список за спаданням прибутку (виведення нового списку прибутку) : <br>')
+		for (const site of developedSites)
+			document.write(`${site.siteCost} <br>`)
+
+
+
+		function getTwoListsByDivider(objArr, divider) {
+			const objWithPriceOver = []
+			const objWithPriceLess = []
+			for (const site of objArr)
+				if (site.siteCost < divider)
+					objWithPriceLess.push(JSON.parse(JSON.stringify(site)))
+				else
+					objWithPriceOver.push(JSON.parse(JSON.stringify(site)))
+			return { objWithPriceLess, objWithPriceOver }
+		}
+
+		const twoLists = getTwoListsByDivider(developedSites, 10000)
+
+		document.write('7. <br>Список з копіями об’єктів, що містять сайти з вартість до 10000 : <br>')
+		for (const site of twoLists.objWithPriceLess)
+			document.write(`${JSON.stringify(site)} <br>`)
+
+		document.write('Список з копіями об’єктів, що містять сайти з вартість 10000 і більше : <br>')
+		for (const site of twoLists.objWithPriceOver)
+			document.write(`${JSON.stringify(site)} `)
+
+	</script>
+
+
+</body>
+
+</html>
