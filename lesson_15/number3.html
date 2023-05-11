@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework №15</title>
+	<link rel="icon" type="image/x-icon" href="img/icon.ico">
+</head>
+
+<body>
+	<h2>Задача 3.</h2>
+	<div>
+		<p>
+			Розробити клас MultChecker для перевірки таблиці множення.
+		</p>
+		<table>
+			<tbody>
+				<tr>
+					<td>Поля</td>
+					<td>
+						Число, яке перевіряємо (наприклад, перевірка частини таблиці множення на 7) <br>
+						Кількість правильних відповідей <br>
+						Кількість неправильних відповідей
+					</td>
+				</tr>
+				<tr>
+					<td>Методи</td>
+					<td>
+						Генерування прикладу (метод випадковим чином визначає друге число, перше число фіксоване) <br>
+						Перевірка правильності вказаної відповіді <br>
+						render - виведення інформації про тестування на екран
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<h4>Розв'язок : </h4>
+
+	<script>
+		class MultChecker {
+			constructor(number) {
+				this.number = number
+				this.correctAntswerCounter = 0
+				this.wrongAntswerCounter = 0
+			}
+
+			numberGeneration() {
+				let randomNumber = Math.floor(Math.random() * 10) + 1
+				let correctAntswerCounter = this.number * randomNumber
+				return { randomNumber, correctAntswerCounter }
+			}
+
+			checkingAsswers() {
+				do {
+					let { randomNumber, correctAntswerCounter } =
+						this.numberGeneration()
+					let userAntswer = parseInt(
+						prompt(`Скільки буде ${this.number} * ${randomNumber} ?`)
+					)
+					if (correctAntswerCounter === userAntswer)
+						this.correctAntswerCounter++
+					else this.wrongAntswerCounter++
+				} while (confirm("Бажаєте продовжити?"))
+			}
+
+			render() {
+				document.write(`Перевірка таблиці множення на ${this.number}<br>
+            Кількість правильних відповідей : ${this.correctAntswerCounter}<br>
+            Кількість неправильних відповідей : ${this.wrongAntswerCounter}`)
+			}
+		}
+		let multChecker = new MultChecker(7)
+		multChecker.numberGeneration()
+		multChecker.checkingAsswers()
+		multChecker.render()
+	</script>
+
+</body>
+
+</html>
