@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework №15</title>
+	<link rel="icon" type="image/x-icon" href="img/icon.ico">
+</head>
+
+<body>
+	<h2>Задача 1.</h2>
+	<div>
+		<p>
+			Створити об’єкт «Тир». У масиві зберігаються 1, якщо у цьому квадраті є заєць і 0 в іншому випадку.
+		</p>
+		<table>
+			<tbody>
+				<tr>
+					<td>Тир</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Поля(властивості)</td>
+					<td>Масив, у якому зберігається поле з зайцями</td>
+				</tr>
+				<tr>
+					<td>Методи (дії)</td>
+					<td>
+						Метод пострілу (задається позиція пострілу)<br>
+						Виведення ігрового поля
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<h4>Розв'язок : </h4>
+
+	<script>
+		class ShootingRange {
+			constructor() {
+				this.fieldWithHares = [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1]
+			}
+			shotResuit() {
+				const userShot = parseInt(
+					prompt("Введіть номер пострілу 1-15", "1")
+				)
+				if (this.fieldWithHares[userShot - 1] === 1)
+					document.write("Ви попали! <br>")
+				else document.write("Ви не попали :-((<br>")
+			}
+			showPlayingField() {
+				document.write(`${this.fieldWithHares}`)
+			}
+		}
+		const shootingRange = new ShootingRange()
+		shootingRange.shotResuit()
+		shootingRange.showPlayingField()
+	</script>
+
+</body>
+
+</html>
