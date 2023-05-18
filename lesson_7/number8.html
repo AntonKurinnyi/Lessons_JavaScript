@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework №7</title>
+</head>
+
+<body style="background-color: rgb(181, 181, 155);font-size: 20px;">
+	<h2>Задача 8.</h2>
+	<p>
+		Створити функцію, яка виводить банер (у функцію передаються: зображення,
+		заголовок та посилання), куди переходимо при кліку на зображення (тег img повинен
+		знаходитись у середині тега a)
+	</p>
+	<script>
+		const picture = `<img src="img/4.jpg">`
+		const title = `Посилання`
+		const link = `https://github.com/`
+		function showBanner(picture, title, link) {
+			return `<div><h4>${title}</h4><a href="${link}">${picture}</a>`
+		}
+		document.write(showBanner(picture, title, link))
+	</script>
+
+</body>
+
+</html>
