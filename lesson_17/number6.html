@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework №17</title>
+	<link rel="icon" type="image/x-icon" href="img/icon.ico">
+</head>
+
+<body>
+	<h2>Задача 6.</h2>
+	<div>
+		<p>
+			Дано два класи MultChecker (клас для перевірки таблиці множення - рандомно генеруються числа, які треба
+			перемножати), AddChecker (клас для перевірки додавання - рандомно генеруються числа у заданому діапазоні, які
+			треба додавати). Обидва класи надсилають результати тестування об'єкту класу Hystory, який зберігає історію
+			тестування у масиві у вигляді об'єктів
+		</p>
+	</div>
+
+	<h4>Розв'язок : </h4>
+
+	<script src="js/randomValues.js"></script>
+	<script>
+
+		class MultChecker {
+			constructor() {
+				this.randomNumber1
+				this.randomNumber2
+			}
+
+			createRandomNumbers() {
+				this.randomNumber1 = RandomValues.getRandomNumber(1, 10)
+				this.randomNumber2 = RandomValues.getRandomNumber(1, 10)
+			}
+
+			createTest() {
+				this.createRandomNumbers()
+				const userAnswer = parseInt(prompt(`Скільки буде ${this.randomNumber1} * ${this.randomNumber2}?`))
+				const result = new TestData(this.randomNumber1, this.randomNumber2, '*', userAnswer, this.randomNumber1 * this.randomNumber2).getResultObj()
+
+				new History().addRecord(result)
+			}
+		}
+
+		class AddChecker {
+			constructor() {
+				this.randomNumber1
+				this.randomNumber2
+			}
+
+			createRandomNumbers() {
+				this.randomNumber1 = RandomValues.getRandomNumber(1, 10)
+				this.randomNumber2 = RandomValues.getRandomNumber(1, 10)
+			}
+
+			createTest() {
+				this.createRandomNumbers()
+				const userAnswer = parseInt(prompt(`Скільки буде ${this.randomNumber1} + ${this.randomNumber2}?`))
+				const result = new TestData(this.randomNumber1, this.randomNumber2, '+', userAnswer, this.randomNumber1 + this.randomNumber2).getResultObj()
+
+				new History().addRecord(result)
+			}
+		}
+
+		class TestData {
+			constructor(firstNum, secondNum, operation, userAnswer, correctAnswer) {
+				this.firstNum = firstNum
+				this.secondNum = secondNum
+				this.operation = operation
+				this.userAnswer = userAnswer
+				this.correctAnswer = correctAnswer
+			}
+
+			getResultObj() {
+				return {
+					firstNum: this.firstNum,
+					secondNum: this.secondNum,
+					operation: this.operation,
+					userAnswer: this.userAnswer,
+					correctAnswer: this.correctAnswer
+				}
+			}
+		}
+
+		class History {
+			static historyRef
+			constructor() {
+				if (History.historyRef)
+					return History.historyRef
+
+				this.testsList = []
+				History.historyRef = this
+			}
+
+			addRecord(record) {
+				this.testsList.push(record)
+			}
+
+			toString() {
+				let output = ``
+				for (const line of this.testsList)
+					output += `firstNum = ${line.firstNum} <br> secondNum = ${line.secondNum} <br> operation : "${line.operation}" <br> userAnswer : ${line.userAnswer} <br> correctAnswer : ${line.correctAnswer}<br>`
+				return output
+			}
+		}
+
+		class TestManager {
+			#tasksNumber
+			#secondsNumber
+			constructor(tasksNumber, secondsNumber) {
+				this.TasksNumber = tasksNumber
+				this.SecondsNumber = secondsNumber
+				this.history = new History()
+			}
+
+			get TasksNumber() {
+				return this.#tasksNumber
+			}
+			set TasksNumber(value) {
+				if (value < 1 || isNaN(value))
+					throw new Error('Incorrect number of tasks.')
+				this.#tasksNumber = value
+			}
+
+			get SecondsNumber() {
+				return this.#secondsNumber
+			}
+			set SecondsNumber(value) {
+				if (value < 0 || isNaN(value))
+					throw new Error('Incorrect number of seconds.')
+				this.#secondsNumber = value
+			}
+
+			createRandomOperation() {
+				const operationNum = RandomValues.getRandomNumber(0, 1)
+				return operationNum === 0 ? new MultChecker() : new AddChecker()
+			}
+
+			askUser() {
+				let timeCounter = 0
+				let timer = setInterval(() => {
+					this.createRandomOperation().createTest()
+					timeCounter++
+
+					if (timeCounter === this.TasksNumber) {
+						clearInterval(timer)
+						document.write(this.history)
+						console.log(this.history)
+					}
+				}, this.SecondsNumber * 500)
+			}
+		}
+
+		const userTasksNumber = parseInt(prompt('Скільки прикладів порозв\'язуємо?'))
+		const secondsAmount = 2
+		const userTest = new TestManager(userTasksNumber, secondsAmount)
+		userTest.askUser()
+
+	</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework №17</title>
+	<link rel="icon" type="image/x-icon" href="img/icon.ico">
+</head>
+
+<body>
+	<h2>Задача 3.</h2>
+	<div>
+		<p>
+			Створити клас Нагадувач. Кожні вказані кількості секунд (використати setInterval) програма нагадує про якусь
+			подію (це просто текст) і також виводиться порядковий номер скільки раз вже нагадування було. Зробити так, щоб
+			неможна було зробити одночасно декілька об’єктів-нагадувачів. Методи зупинки таймера, метод зміни повідомлення
+			без зупинки таймера.
+		</p>
+	</div>
+
+	<h4>Розв'язок : </h4>
+
+	<script>
+
+		class Reminder {
+			static reminderRef
+			constructor(text, seconds) {
+				if (Reminder.reminderRef)
+					return Reminder.reminderRef
+
+				this.text = text
+				this.seconds = seconds
+				this.remindersAmount = 0
+				this.createEvent
+
+				Reminder.reminderRef = this
+			}
+
+			startTimer() {
+				this.createEvent = setInterval(() => {
+					this.remindersAmount++
+					document.write(`Reminder №${this.remindersAmount}: ${this.text}<br>`)
+				}, this.seconds * 1000)
+			}
+
+			stopTimer(stopAfterNumber) {
+				setTimeout(() => {
+					clearInterval(this.createEvent)
+				}, this.seconds * 1000 * stopAfterNumber)
+			}
+
+			changeEvent(eventText, changeAfterNumber) {
+				setTimeout(() => {
+					this.text = eventText
+				}, this.seconds * 1000 * changeAfterNumber)
+			}
+		}
+
+		const reminder = new Reminder('Go to the hospital', 2)
+		const reminder2 = new Reminder('Go to the work', 3)
+
+
+		reminder2.startTimer()
+		reminder.changeEvent('Go to eat something', 6)
+		reminder2.stopTimer(9)
+
+	</script>
+
+</body>
+
+</html>
