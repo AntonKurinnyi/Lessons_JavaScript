@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework №16</title>
+	<link rel="icon" type="image/x-icon" href="img/icon.ico">
+</head>
+
+<body>
+	<h2>Задача 4.</h2>
+	<div>
+		<p>
+			Створити клас TBankomat, який моделює роботу банкомата. Клас повинен містити поля для зберігання кількості
+			купюр кожного із номіналів від 5 до
+			200 гривень. Реалізувати методи знаходження максимальної та мінімальної сум, які може видати банкомат, та метод
+			зняття деякої суми.
+		</p>
+	</div>
+
+	<h4>Розв'язок : </h4>
+
+	<script>
+
+		class TBankomat {
+			constructor(initBanknotes) {
+				this.banknotes = initBanknotes
+			}
+
+			getMaxSum() {
+				return this.banknotes.reduce((prevSum, object) => prevSum + object.Note * object.Amount, 0)
+			}
+
+			getMinSum() {
+				let minAvailableNote = Infinity
+				for (const banknote of this.banknotes)
+					if (banknote.Note < minAvailableNote && banknote.Amount !== 0) minAvailableNote = banknote.Note
+				return minAvailableNote !== Infinity ? minAvailableNote : 0
+			}
+
+			withdrawCash(value) {
+				this.banknotes.sort((obj1, obj2) => {
+					if (obj1.Amount === 0 && obj2.Amount !== 0) return 1
+					if (obj1.Note > obj2.Note) return -1
+					return 0
+				})
+
+
+				const removedNotes = []
+				for (const banknote of this.banknotes) {
+					removedNotes.push({ [banknote.Note]: 0 })
+					let banknotesAmount = banknote.Amount
+					while (value >= banknote.Note && banknotesAmount > 0) {
+						value -= banknote.Note
+						removedNotes[removedNotes.length - 1][banknote.Note] += 1
+						banknotesAmount--
+					}
+				}
+
+
+				if (value === 0) {
+					for (let i = 0; i < removedNotes.length; i++)
+						this.banknotes[i].Amount -= removedNotes[i][this.banknotes[i].Note]
+					return true
+				}
+				return false
+			}
+
+			toString() {
+				let banknotesList = ''
+				for (const banknote of this.banknotes)
+					banknotesList += `${banknote}<br>`
+				return banknotesList
+			}
+		}
+
+
+		class Banknote {
+			#note
+			#amount
+			constructor(initNote, initAmount) {
+				this.Note = initNote
+				this.Amount = initAmount
+			}
+
+			checkNote(value) {
+				switch (value) {
+					case 5:
+					case 10:
+					case 20:
+					case 50:
+					case 100:
+					case 200:
+						return true
+					default:
+						return false
+				}
+			}
+
+			get Note() {
+				return this.#note
+			}
+			set Note(value) {
+				if (!this.checkNote(value))
+					throw new Error('Incorrect value of note.')
+				this.#note = value
+			}
+
+			get Amount() {
+				return this.#amount
+			}
+			set Amount(value) {
+				if (value < 0)
+					throw new Error('Incorrect amount of notes.')
+				this.#amount = value
+			}
+
+			toString() {
+				return `${this.Note} грн - ${this.Amount} купюр`
+			}
+		}
+
+
+		const banknotes = [
+			new Banknote(5, 1),
+			new Banknote(10, 1),
+			new Banknote(20, 2),
+			new Banknote(50, 3),
+			new Banknote(100, 2),
+			new Banknote(200, 4),
+		]
+		const ATM = new TBankomat(banknotes)
+		const userMoney = parseInt(prompt('Введіть суму, яку бажаєте зняти:'))
+
+		let withdrawCashResult = ''
+		if (ATM.withdrawCash(userMoney))
+			withdrawCashResult = '<i>Отримайте готівку!</i>'
+		else
+			withdrawCashResult = '<i>Нажаль банкомат не може видати дану суму</i>'
+
+		document.write(`${withdrawCashResult}<br><br>
+         <i>Доступні банкноти:</i><br>${ATM}
+         <i>Максимальна сума, яку може видати банкомат:</i> ${ATM.getMaxSum()}<br>
+         <i>Мінімальна сума, яку може видати банкомат:</i> ${ATM.getMinSum()}<br>`)
+
+	</script>
+
+</body>
+
+</html>
