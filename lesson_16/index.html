@@ -1,81 +1,190 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
 
 <head>
 	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/style.css">
-	<title>Homework №16</title>
-	<link rel="icon" type="image/x-icon" href="img/icon.ico">
+	<title>Lesson_16</title>
 </head>
 
 <body>
-	<h1>Homework №16</h1>
+	<header></header>
+	<div class="wrapper">
+		<main>
+			<div class="page">
+				<div class="page__container">
+					<div class="page__header">
+						<h2 class="page__title">Checkout</h2>
+						<p class="page__text">There are 3 products in your cart</p>
+					</div>
+					<div class="page__main">
+						<div class="page__subtitle">
+							Billing Details
+						</div>
+						<form class="page__form" action="#">
+							<div class="page__block">
+								<div class="page__input">
+									<input type="text" name="name" autocomplete="off" placeholder="First name*" required>
+								</div>
+								<div class="page__input">
+									<input type="text" name="last-name" autocomplete="off" placeholder="Last name*" required>
+								</div>
+								<div class="page__input">
+									<input type="text" name="adress" autocomplete="off" placeholder="Address*" required>
+								</div>
+								<div class="page__input">
+									<input type="text" name="adress-line" autocomplete="off" placeholder="Address line 2"
+										required>
+								</div>
+								<div class="page__list">
+									<select name="page__list">
+										<option value="Ukraine">Ukraine</option>
+										<option value="Germany">Germany</option>
+										<option value="USA">USA</option>
+									</select>
+								</div>
+								<div class="page__input">
+									<input type="text" name="city" autocomplete="off" placeholder="City/Town*" required>
+								</div>
+								<div class="page__input">
+									<input type="text" name="postcode" autocomplete="off" placeholder="Postcode / ZIP*" required>
+								</div>
+								<div class="page__input">
+									<input type="tel" name="tel" autocomplete="off" placeholder="Phone*" required>
+								</div>
+								<div class="page__input">
+									<input type="text" name="postcode" autocomplete="off" placeholder="Postcode / ZIP*" required>
+								</div>
+								<div class="page__input">
+									<input type="tel" name="tel" autocomplete="off" placeholder="Phone*" required>
+								</div>
+								<div class="page__area">
+									<textarea name="message" placeholder="Additional information"></textarea>
+								</div>
+							</div>
 
-	<div>
-		<a href="number1.html" target="_blank">Задача 1.</a>
-		<p>
-			Створити клас TDate для роботи із датами у форматі “день.місяць.рік”. Дата представляється структурою із трьома
-			полями. Реалізувати методи збільшення/зменшення дати на певну кількість днів, місяців чи років. Введення та
-			виведення дати реалізувати за допомогою методу toString.
-		</p>
+							<div class="page__checkboxes">
+								<div class="page__checkbox">
+									<input class="page__check" id="account" type="checkbox" required name="account">
+									<label class="page__label" for="account">Create Account</label>
+								</div>
+								<div class="page__checkbox">
+									<input class="page__check" id="address_01" type="checkbox" required name="address">
+									<label class="page__label" for="address_01">Ship to a different address?</label>
+								</div>
+							</div>
+							<div class="page__button">
+								<div class="coupon">
+									<div class="coupon__title">
+										Apply Coupon to get discount!
+									</div>
+									<div class="coupon__code">
+										<input class="coupon__input" type="text" placeholder="Coupon code" autocomplete="off">
+										<button type="submit" class="coupon__button">
+											Apply Code
+										</button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="shipping">
+				<div class="shipping__title">
+					Shipping Address
+				</div>
+				<form action="#" class="shipping__authorization">
+					<div class="shipping__item">
+						<label class="shipping__label" for="email_01">Email Address <span>*</span></label>
+						<input class="shipping__input" id="email_01" type="email" name="email" autocomplete="off" required
+							placeholder="roni_cost@example.com">
+					</div>
+					<div class="shipping__item">
+						<label class="shipping__label" for="pass_01">Password</label>
+						<input class="shipping__input" id="pass_01" type="password" name="password" autocomplete="off"
+							required placeholder="******************">
+					</div>
+					<div class="shipping__item">
+						<label class="shipping__label" for="zip_01">Zip/Postal Code</label>
+						<input class="shipping__input" id="zip_01" type="text" name="zip" autocomplete="off">
+					</div>
+					<div class="shipping__text">
+						You already have an account with us. Sign in or continue as guest.
+					</div>
+					<div class="shipping__action">
+						<button class="shipping__button" type="submit">login</button>
+						<a class="shipping__link" href="#">Forgot Your Password?</a>
+					</div>
+				</form>
+				<form action="#">
+					<div class="shipping__registration">
+						<div class="shipping__item">
+							<label class="shipping__label" for="name">First Name <span>*</span></label>
+							<input class="shipping__input" id="name" type="text" name="name" autocomplete="off" required>
+						</div>
+						<div class="shipping__item">
+							<label class="shipping__label" for="last-name">Last Name <span>*</span></label>
+							<input class="shipping__input" id="last-name" type="text" name="last-name" autocomplete="off"
+								required>
+						</div>
+						<div class="shipping__item">
+							<label class="shipping__label" for="company">Company</label>
+							<input class="shipping__input" id="company" type="text" name="company" autocomplete="off">
+						</div>
+						<div class="shipping__item">
+							<label class="shipping__label" for="address_02">Street Address <span>*</span></label>
+							<input class="shipping__input" id="address_02" type="text" name="address" autocomplete="off"
+								required>
+							<input class="shipping__input shipping__input--reg" id="address_03" type="text" name="address"
+								autocomplete="off" required>
+							<input class="shipping__input shipping__input--reg" id="address_04" type="text" name="address"
+								autocomplete="off" required>
+						</div>
+						<div class="shipping__item">
+							<label class="shipping__label" for="country">Country <span>*</span></label>
+							<input class="shipping__input" id="country" type="text" name="country" required autocomplete="off">
+						</div>
+						<div class="shipping__list">
+							<label class="shipping__label" for="location">State/Province <span>*</span></label>
+							<select class="shipping__element" name="location" id="location">
+								<option>Please select a region, state or province</option>
+								<option value="1">Dnipro</option>
+								<option value="2">Lviv</option>
+								<option value="3">Kiev</option>
+								<option value="4">Poltava</option>
+							</select>
+						</div>
+					</div>
+					<div class="shipping__title title-methods">
+						Shipping Methods
+					</div>
+
+					<div class="shipping__ridio radio">
+						<div class="radio__wrapper">
+							<input class="radio__input" type="radio" checked name="price" value="5.00$" id="price_5">
+							<label class="radio__label label-style" for="price_5">$5.00</label>
+							<p class="radio__text">Fixed</p>
+							<p class="radio__text">Flat Rate</p>
+						</div>
+						<div class="radio__wrapper">
+							<input class="radio__input" type="radio" checked name="price" value="10.00$" id="price_10">
+							<label class="radio__label label-style" for="price_10">$10.00</label>
+							<p class="radio__text">Table Rate</p>
+							<p class="radio__text">Best Way</p>
+						</div>
+					</div>
+					<div class="shipping__action shipping__action--next">
+						<button class="shipping__button shipping__button--next" type="submit">next</button>
+						<a class="shipping__link shipping__link--back" href="#">Back</a>
+					</div>
+				</form>
+			</div>
+		</main>
+		<footer>
+		</footer>
 	</div>
-
-	<div>
-		<a href="number2.html" target="_blank">Задача 2.</a>
-		<p>
-			Створити клас TMoney для роботи з грошовими сумами. Сума повинна зберігатися у вигляді доларового еквіваленту.
-			Реалізувати методи додавання/вилучення грошової маси, вказуючи необхідну суму у гривнях, та визначення курсу
-			долара, при якому сума у гривнях збільшиться на 100. Курс долара
-			зберігати в окремому полі.
-		</p>
-	</div>
-
-	<div>
-		<a href="number3.html" target="_blank">Задача 3.</a>
-		<p>
-			Об’єкт “Фірма” (використати члени-класи)
-		</p>
-		<table>
-			<tbody>
-				<tr>
-					<td>Поля:</td>
-					<td>
-						<ul>
-							<li>назва фірми</li>
-							<li>дата заснування (рік, місяць)</li>
-							<li>послуги (назва послуги, вартість, термін виконання)</li>
-							<li>адреси філіалів (країна, місто, вулиця, номер будинку)</li>
-						</ul>
-					</td>
-				</tr>
-				<tr>
-					<td>Методи:</td>
-					<td>
-						<ul>
-							<li>визначення кількості років існування фірми</li>
-							<li>виведення всіх філіалів фірми у вказаному місті</li>
-							<li>виведення на екран послуг, що можуть бути виконані за вказану суму грошей та вказаний термін
-								часу
-							</li>
-						</ul>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-
-	<div>
-		<a href="number4.html" target="_blank">Задача 4.</a>
-		<p>
-			Створити клас TBankomat, який моделює роботу банкомата. Клас повинен містити поля для зберігання кількості
-			купюр кожного із номіналів від 5 до
-			200 гривень. Реалізувати методи знаходження максимальної та мінімальної сум, які може видати банкомат, та метод
-			зняття деякої суми.
-		</p>
-	</div>
-
 </body>
 
 </html>
