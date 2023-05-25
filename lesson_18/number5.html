@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework №18</title>
+	<link rel="icon" type="image/x-icon" href="img/icon.ico">
+</head>
+
+<body>
+	<h2>Задача 5.</h2>
+	<div>
+		<p>
+			Відобразити таблицю 3*4 з випадковими числами (її треба динамічно створити і вставити на сторінку)
+		</p>
+	</div>
+
+	<script>
+		let body = document.querySelector('body')
+		createTable(4, 3, body, 1, 50)
+
+		function createTable(row, col, parent, minV, maxV) {
+			let table = document.createElement('table')
+			table.style.cssText = 'border: 3px solid purple;'
+
+			for (let i = 0; i < row; i++) {
+				let tr = document.createElement('tr')
+				for (let j = 0; j < col; j++) {
+					let td = document.createElement('td')
+					td.style.border = '2px solid purple'
+					td.innerHTML = getRandomNumber(minV, maxV)
+					tr.append(td)
+				}
+				table.append(tr)
+			}
+			parent.append(table)
+		}
+
+		function getRandomNumber(minV, maxV) {
+			return minV + Math.floor(Math.random() * (maxV - minV + 1))
+		}
+	</script>
+
+</body>
+
+</html>

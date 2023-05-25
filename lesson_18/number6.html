@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework №18</title>
+	<link rel="icon" type="image/x-icon" href="img/icon.ico">
+</head>
+
+<body>
+	<h2>Задача 6.</h2>
+	<div>
+		<p>
+			Користувач задає кількість оцінок і натискає на кнопку «get table». В результаті формується таблиця з input,
+			куди користувач вводить оцінки. Після цього натискає на кнопку “get sum” і знаходить середнє значення
+		</p>
+	</div>
+
+	<div class="task_6">
+		<label>
+			Кількість оцінок :
+			<input class="pricenumber" type="text" placeholder="0">
+		</label>
+		<br>
+		<button class="gettable">get table</button>
+		<br>
+		<br>
+	</div>
+	<script>
+		function createTableInput() {
+			const divParent = document.querySelector('.task_6')
+			const priceNumber = parseFloat(document.querySelector('.pricenumber').value)
+			const table = document.createElement('table')
+			table.classList.add('table')
+			table.style.cssText = 'border: 3px solid purple;'
+			for (let i = 0; i < priceNumber; i++) {
+				let tr = document.createElement('tr')
+				table.append(tr)
+				let input = document.createElement('input')
+				input.setAttribute('placeholder', 0)
+				tr.append(input)
+			}
+			divParent.append(table)
+			const button = document.createElement('button')
+			button.style.cssText = 'margin: 5px 4px 5px 4px'
+			button.innerHTML = 'get sum'
+			button.classList.add('averageValue')
+			button.setAttribute('onclick', 'getAvarageValue()')
+			divParent.append(button)
+		}
+
+		function getAvarageValue() {
+			const divParent = document.querySelector('.task_6')
+			const table = document.querySelectorAll('.table input')
+			let result = 0
+			for (const input of table) {
+				result += parseFloat(input.value)
+			}
+
+			const p = document.createElement('p')
+			p.innerHTML = `sum = ${(result / table.length).toFixed(1)}`
+			divParent.append(p)
+		}
+
+		window.onload = () => {
+			document.querySelector('.gettable').onclick = createTableInput
+		}
+	</script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework №18</title>
+	<link rel="icon" type="image/x-icon" href="img/icon.ico">
+</head>
+
+<body>
+	<h2>Задача 3.</h2>
+	<div>
+		<p>
+			Користувач задає рік народження. Визначити кількість років користувача
+		</p>
+	</div>
+
+	<label>
+		Ваш рік народження :
+		<input type="text" placeholder="1990">
+	</label>
+	<br>
+
+	<script>
+		function getYears() {
+			const userYearBirth = parseFloat(document.querySelector('input').value)
+			const currentYear = new Date().getFullYear()
+
+			document.querySelector('body').append(`Ваш вік : ${currentYear - userYearBirth} р.`)
+		}
+
+		window.onload = () => {
+			document.querySelector('input').onchange = getYears
+		}
+	</script>
+
+
+</body>
+
+</html>

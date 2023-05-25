@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework №18</title>
+	<link rel="icon" type="image/x-icon" href="img/icon.ico">
+</head>
+
+<body>
+	<h2>Задача 1.</h2>
+	<div>
+		<p>
+			Розробити калькулятор
+		</p>
+	</div>
+
+	<div class="task_1">
+		<label>
+			Перший номер :
+			<input class="first" type="text" placeholder="0">
+		</label><br>
+		<label>
+			Другий номер :
+			<input class="second" type="text" placeholder="0">
+		</label><br>
+
+		<button class="addition" value="+">Додавання</button>
+		<button class="subtraction" value="-">Віднімання</button>
+		<button class="multiplication" value="*">Множення</button>
+		<button class="division" value="/">Ділення</button>
+		<br>
+		<br>
+
+		<label>
+			Результат :
+			<input class="result" type="text" placeholder="0">
+		</label>
+	</div>
+
+	<script>
+		function action() {
+			const firstNum = parseFloat(document.querySelector('.first').value)
+			const secondNum = parseFloat(document.querySelector('.second').value)
+			let result
+			switch (this.value) {
+				case '+':
+					result = firstNum + secondNum
+					break;
+				case '-':
+					result = firstNum - secondNum
+					break;
+				case '*':
+					result = firstNum * secondNum
+					break;
+				case '/':
+					result = firstNum / secondNum
+					break;
+			}
+
+			document.querySelector('.result').value = result
+		}
+
+		window.onload = function () {
+			document.querySelector('.addition').onclick = action
+			document.querySelector('.subtraction').onclick = action
+			document.querySelector('.multiplication').onclick = action
+			document.querySelector('.division').onclick = action
+		}
+
+	</script>
+
+</body>
+
+</html>
