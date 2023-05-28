@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework №21</title>
+	<link rel="icon" type="image/x-icon" href="img/icon.ico">
+</head>
+
+<body>
+	<h2>Задача 4.</h2>
+	<div>
+		<p>
+			Дано 3 таблиці розмірності 3*3 з випадковими числами. Якщо відбувається клік на якійсь із клітинок, то до
+			відповідної
+			таблиці додається червона рамка (спробуйте додати можливість відображення кількості кліків біля назви таблиці з
+			використанням відповідно доданого для цього атрибута).
+		</p>
+	</div>
+
+	<style>
+		#task4-out {
+			display: flex;
+			gap: 10px;
+			margin: 30px auto;
+		}
+
+		table {
+
+			font-size: 15px;
+			text-align: center;
+			color: #130d49;
+		}
+
+		td {
+			border: 2px solid rgb(161, 52, 52);
+			padding: 10px;
+			font-size: 25px;
+		}
+	</style>
+
+	<button id="task4-btn" class="button">Натиснути!</button>
+	<div id="task4-out" class="result">
+
+		<script>
+			class TableRedBorder {
+				constructor(amountTable, rowsNum, columnsNum) {
+					this.amountTable = amountTable
+					this.rowsNum = rowsNum
+					this.columnsNum = columnsNum
+					this.countersObj = {}
+				}
+				getRandomNum(minVal, maxVal) {
+					return minVal + Math.floor(Math.random() * (maxVal - minVal + 1))
+				}
+
+				incrementClickCounterAndBorder(event) {
+					console.log(event.target.parentElement)
+					const table = event.target.closest('table')
+					const counterItem = table.previousElementSibling
+					const counterID = counterItem.id
+
+					if (counterID) {
+						this.countersObj[counterID] += 1
+						table.style.border = '5px solid #B22222'
+						counterItem.innerText = `Кліків : ${this.countersObj[counterID]}`
+					} else table.style.border = 'none'
+				}
+				createElement() {
+					const container = document.createElement('div')
+
+					const clickCounterText = document.createElement('p')
+					const id = Math.floor((new Date().getTime() * Math.random()) / 10000)
+					clickCounterText.setAttribute('id', id)
+
+					this.countersObj[id] = 0
+
+					const table = document.createElement('table')
+					for (let i = 0; i < this.rowsNum; i++) {
+						const tr = document.createElement('tr')
+						for (let j = 0; j < this.columnsNum; j++) {
+							const td = document.createElement('td')
+							td.innerText = `${this.getRandomNum(1, 49)}`
+							tr.append(td)
+						}
+						table.append(tr)
+					}
+					container.addEventListener('click', e => {
+						e.stopPropagation()
+						this.incrementClickCounterAndBorder(e)
+					})
+					container.append(clickCounterText)
+					container.append(table)
+					return container
+				}
+				render(targetSelector) {
+					const container = document.querySelector(targetSelector)
+					container.innerHTML = ''
+					for (let i = 0; i < this.amountTable; i++) {
+						const table = this.createElement()
+						container.append(table)
+					}
+				}
+			}
+
+			document.querySelector('#task4-btn').onclick = () => {
+				const t1 = new TableRedBorder(3, 3, 3)
+				t1.render('#task4-out')
+			}
+		</script>
+
+</body>
+
+</html>

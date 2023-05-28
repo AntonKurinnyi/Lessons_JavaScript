@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework №21</title>
+	<link rel="icon" type="image/x-icon" href="img/icon.ico">
+</head>
+
+<body>
+	<h2>Задача 1.</h2>
+	<div>
+		<p>
+			Дано 10 рядків тексту «Hello!» у окремих div. При кліку на якийсь із них усі наступні повинні бути зафарбовані
+			у
+			червоний колір.
+		</p>
+	</div>
+
+	<button id="task1-btn" class="button">Натиснути!</button>
+	<div id="task1-out" class="result">
+	</div>
+
+	<script>
+
+		class PaintDivs {
+			constructor(amountDivs) {
+				this.amountDivs = amountDivs
+				this.el = this.createElement()
+			}
+
+			createElement() {
+				const container = document.createElement('div')
+				container.innerHTML = ''
+				container.addEventListener('click', event => {
+					this.onChildClick(event.target)
+				})
+				for (let i = 0; i < this.amountDivs; i++) {
+					const div = document.createElement('div')
+					div.innerHTML = 'Hello!'
+					container.append(div)
+				}
+				return container
+			}
+			onChildClick(child) {
+				while (child.nextElementSibling) {
+					child.nextElementSibling.style.color = 'red'
+					child = child.nextElementSibling
+				}
+			}
+			render(targetSelector) {
+				const container = document.querySelector(targetSelector)
+				container.innerHTML = ''
+				container.append(this.el)
+			}
+		}
+
+		document.querySelector('#task1-btn').onclick = () => {
+			const d1 = new PaintDivs(10)
+			d1.render('#task1-out')
+		}
+
+	</script>
+
+</body>
+
+</html>

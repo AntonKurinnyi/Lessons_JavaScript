@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework №21</title>
+	<link rel="icon" type="image/x-icon" href="img/icon.ico">
+</head>
+
+<body>
+	<h2>Задача 2.</h2>
+	<div>
+		<p>
+			Дано 5 елементів input. При введенні значення у якийсь із них необхідно автоматично заповнювати інші (усі
+			попередні у
+			спадному порядку(кожен попередній має значення на 1 менше за наступний)), усі наступні на 1 більше (кожен
+			наступне на 1
+			більше за попереднього)
+		</p>
+	</div>
+
+	<button id="task2-btn" class="button">Натиснути!</button>
+	<div id="task2-out" class="result"></div>
+	<style>
+		#task2-out div {
+			display: flex;
+			flex-direction: column;
+			gap: 15px;
+			margin-top: 10px;
+		}
+
+		#task2-out input {
+			width: 100px;
+			text-align: center;
+			margin-left: 10px;
+			font-size: 20px;
+			padding: 7px;
+			border-color: red;
+		}
+
+		#task2-out input :hover {
+			background-color: rgb(172, 138, 138);
+		}
+	</style>
+
+	<script>
+
+		class InterestingInputs {
+			constructor(amountInputs) {
+				this.amountInputs = amountInputs
+				this.el = this.createElement()
+			}
+			createElement() {
+				const container = document.createElement('div')
+				container.addEventListener('input', e => {
+					this.onChangeInput(e.target)
+				})
+				for (let i = 1; i <= this.amountInputs; i++) {
+					const label = document.createElement('label')
+					label.innerText = `Value ${i}`
+					const input = document.createElement('input')
+					input.type = 'number'
+					label.append(input)
+					container.append(label)
+				}
+				return container
+			}
+			onChangeInput(target) {
+				let counter = 1
+				let counter2 = 1
+				let tempTarget = target
+				const generalValue = parseFloat(target.value)
+				while (target.parentElement.nextSibling) {
+					const nextInp = target.parentElement.nextSibling.children[0]
+					if (nextInp.nodeName === 'INPUT') {
+						nextInp.value = generalValue - counter
+						counter++
+						target = nextInp
+					}
+				}
+				while (tempTarget.parentElement.previousElementSibling) {
+					const prevInp = tempTarget.parentElement.previousElementSibling.children[0]
+					if (prevInp.nodeName === 'INPUT') {
+						prevInp.value = generalValue + counter2
+						counter2++
+						tempTarget = prevInp
+					}
+				}
+			}
+
+			render(targetSelector) {
+				const container = document.querySelector(targetSelector)
+				container.innerHTML = ''
+				container.append(this.el)
+			}
+		}
+
+		document.querySelector('#task2-btn').onclick = () => {
+			const list1 = new InterestingInputs(5)
+			list1.render('#task2-out')
+		}
+
+	</script>
+
+</body>
+
+</html>

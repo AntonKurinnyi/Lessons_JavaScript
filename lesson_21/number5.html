@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework №21</title>
+	<link rel="icon" type="image/x-icon" href="img/icon.ico">
+</head>
+
+<body>
+	<h2>Задача 5.</h2>
+	<div>
+		<p>
+			На формі вводять 7 числових значень (вік, зріст, вага, заробітна плата, стаж, номер відділу, порядковий номер).
+			Додати
+			подію обробки події click на форму і якщо клік на input, то автоматично замінювати значення його на 0.
+		</p>
+	</div>
+
+	<style>
+		form {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+
+		form div {
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+			align-items: end;
+		}
+
+		form input {
+			width: 100px;
+			margin-left: 25px;
+			margin-bottom: 15px;
+			text-align: center;
+			font-size: 10px;
+			padding: 5px;
+			background-color: #85bcc58c;
+		}
+	</style>
+
+	<button id="task5-btn" class="button">Натиснути!</button>
+	<div id="task5-out" class="result"></div>
+
+	<script>
+		class JobForm {
+			constructor(titles) {
+				this.titles = titles
+				this.el = this.createElement()
+			}
+
+			onInputClick(e) {
+				if (e.target.nodeName === 'INPUT') {
+					e.target.value = 0
+				}
+			}
+
+			createElement() {
+				const form = document.createElement('form')
+				form.addEventListener('click', e => {
+					this.onInputClick(e)
+				})
+				const div = document.createElement('div')
+				for (const title of this.titles) {
+					const label = document.createElement('label')
+					label.innerText = title
+					const input = document.createElement('input')
+					input.type = 'number'
+					label.append(input)
+					div.append(label)
+				}
+				form.append(div)
+				return form
+			}
+			render(targetSelector) {
+				document.querySelector(targetSelector).append(this.el)
+			}
+		}
+
+		const formTitles = [
+			'Вік',
+			'Зріст',
+			'Вага',
+			'Заробітна плата',
+			'Стаж',
+			'Номер відділу',
+			'Порядковий номер'
+		]
+
+		document.querySelector('#task5-btn').onclick = () => {
+			const j1 = new JobForm(formTitles)
+			j1.render('#task5-out')
+		}
+	</script>
+
+
+</body>
+
+</html>
