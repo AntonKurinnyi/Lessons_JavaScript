@@ -1,0 +1,33 @@
+
+@import url(https://fonts.googleapis.com/css?family=Inter:regular,500,600&display=swap);
+
+
+body {
+font-family: "Inter", sans-serif;
+background-color:rgb(203, 203, 185);
+line-height: 1.5;
+font-weight: 500;
+font-size: 20px;
+margin: 30px;
+}
+
+a{
+	display: inline-block;
+	margin: 0 auto;
+}
+
+h1{
+	text-align: center;
+}
+
+td, table {
+   border: 1px solid #046d2c;
+}
+div:not(:last-child){
+	margin-bottom: 20px;
+}
+
+/* img{
+	height: 250px;
+	width: 650px;	
+} */

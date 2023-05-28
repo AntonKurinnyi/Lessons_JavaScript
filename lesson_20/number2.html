@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework №20</title>
+	<link rel="icon" type="image/x-icon" href="img/icon.ico">
+</head>
+
+<body>
+	<h2>Задача 2.</h2>
+	<div>
+		<p>
+			Динамічний пошук. Є список працівників і поле пошуку. При введенні відображаються усі, які містять вказаний
+			фрагмент
+		</p>
+	</div>
+
+	<div class="main"></div>
+	<style>
+		.main {
+			padding-top: 100px;
+		}
+
+		li {
+			list-style: none;
+		}
+
+		li:not(:last-child) {
+			margin-bottom: 10px;
+		}
+
+		span {
+			font-size: 24px;
+		}
+
+		.main__container {
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
+			align-items: center;
+			border: 2px dotted #18007887;
+			padding: 20px;
+		}
+
+		.label__line {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			text-transform: uppercase;
+			color: #547800;
+			font-size: 22px;
+		}
+
+		.input__line {
+			background-color: transparent;
+			height: 24px;
+			font-size: 22px;
+			border-radius: 15px;
+			border: 1px solid #260c6f88;
+		}
+	</style>
+
+
+	<script>
+
+		let employeesList = ['Smith B.', 'Johnson S.', 'Williams A.', 'Brown E.', 'Jones Z.', 'Garcia M.', 'Miller R.', 'Davis Q.', 'Williams U.', 'Davis L.']
+		let styleObject = {
+			mainContainer: 'main__container',
+			labelForm: 'label__line',
+			inputForm: 'input__line'
+		}
+		//
+		class SearchForm {
+			constructor(employeesList, styleObject) {
+				this.employeesList = employeesList
+				this.styleObject = styleObject
+			}
+			searchEmployee(input) {
+				let searchtList = this.employeesList.filter(name => name.includes(input.value))
+				this.list.innerHTML = ''
+				for (const el of searchtList) {
+					let elem = document.createElement('li')
+					elem.innerText = el
+					this.list.append(elem)
+				}
+			}
+			render(targetSelector) {
+				const mainContainer = document.createElement('div')
+				mainContainer.className = this.styleObject.mainContainer
+				//
+				const label = document.createElement('label')
+				label.className = this.styleObject.labelForm
+				label.append("Name")
+				const input = document.createElement('input')
+				input.className = this.styleObject.inputForm
+				input.oninput = this.searchEmployee.bind(this, input)
+				label.append(input)
+				mainContainer.append(label)
+				//
+				const listTitle = document.createElement('div')
+				listTitle.innerHTML = '<span>Employees : </span>'
+				mainContainer.append(listTitle)
+				//
+				const listContainer = document.createElement('div')
+				this.list = document.createElement('ul')
+				for (const employee of this.employeesList) {
+					this.li = document.createElement('li')
+					this.li.innerText = employee
+					this.list.append(this.li)
+				}
+				listContainer.append(this.list)
+				mainContainer.append(listContainer)
+				//
+				document.querySelector(targetSelector).append(mainContainer)
+			}
+		}
+		window.onload = function () {
+			let searchEmployee = new SearchForm(employeesList, styleObject)
+			searchEmployee.render('.main')
+			searchEmployee.searchEmployee()
+		}
+	</script>
+</body>
+
+</html>

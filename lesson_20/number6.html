@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework №20</title>
+	<link rel="icon" type="image/x-icon" href="img/icon.ico">
+</head>
+
+<body>
+	<h2>Задача 6.</h2>
+	<div>
+		<p>
+			Розробити ToDo менеджер. Користувач вводить текст задачі та пріоритетність. Відображається список доданих задач
+			з
+			можливістю видалення задач та сортування за пріоритетністю.
+		</p>
+	</div>
+
+	<style>
+		.wrapper {
+			padding: 20px;
+		}
+
+		.resolve20_6 {
+			display: flex;
+			flex-direction: column;
+			min-width: 50%;
+			margin: 15px 0;
+			font-size: 18px;
+			border: #342c2c 3px solid;
+			border-radius: 5px;
+			padding: 30px;
+			align-self: center;
+			text-align: center;
+		}
+
+		.resolve20_6 input {
+			margin: 10px 0;
+			height: 35px;
+			padding-left: 15px;
+		}
+
+		.btn_20_6 {
+			margin-top: 10px;
+			border: #c6b9b9 2px solid;
+			padding: 10px 0;
+		}
+
+		.btn_20_6:hover {
+			color: #00f034;
+			border: #5d815b 2px solid;
+		}
+
+		.btn_add_task {
+			padding: 10px 35px;
+			align-self: center;
+		}
+
+		.resolve20_6__title {
+			display: flex;
+			justify-content: space-between;
+		}
+
+		.added-task {
+			display: flex;
+			gap: 15px;
+			margin: 15px 0;
+			border: #6c7f83 2px solid;
+			width: 100%;
+			padding: 0px;
+		}
+
+		.added-task_text {
+			text-align: justify;
+			align-self: center;
+			flex: 1;
+		}
+
+		.added-task_priority {
+			align-self: center;
+			max-width: 150px;
+		}
+
+		.btn_delete-task {
+			border: #ffffff 1px solid;
+			padding: 10px 20px;
+			align-self: center;
+		}
+
+		.btn_delete-task:hover {
+			color: #76a686;
+			border: #4e9364 1px solid;
+			align-self: center;
+		}
+
+		.buttons-block {
+			display: flex;
+			justify-content: space-between;
+		}
+
+		.sortByName {
+			padding: 11px 15px;
+		}
+	</style>
+
+	<div class="resolve20_6">
+		<h3>Задача</h3>
+		<input name="textTask" type="text" placeholder="Назва задачі" id="textTask">
+
+		<label for="priorityTask">Пріоритетність</label>
+		<input name="priorityTask" type="number" placeholder="10" id="priorityTask">
+
+		<div class="buttons-block">
+
+			<div class="buttons-block__sort">
+				<button type="button" class="button btn_20_6 btn_add_task" id="sort">Сортувати</button>
+				<select name="sortbyname" id="sortbyname" class="sortbyname">
+					<option value="ascending">за зростанням пріоритету</option>
+					<option value="descending">за спаданням пріоритету</option>
+				</select>
+			</div>
+			<button type="button" class="button btn_20_6 btn_add_task" id="btn_add_task">Додати задачу</button>
+		</div>
+	</div>
+
+	<div class="resolve20_6">
+		<div class="resolve20_6__title">
+			<h3>Ваші задачі</h3>
+			<button type="button" class="button btn_delete-task" id="clearAll">Видалити все</button>
+		</div>
+		<div id="tasks"></div>
+		<script>
+			function deleteTask() {
+				this.parentElement.remove();
+			}
+
+			function clearAllTasks() {
+				const mainContainer = document.getElementById('tasks')
+				while (mainContainer.firstChild) {
+					mainContainer.removeChild(mainContainer.firstChild);
+				}
+			}
+
+			function sort() {
+				const taskPriorities = Array.from(document.querySelectorAll('.added-task_priority'));
+
+
+				let order = document.getElementById(`sortbyname`)
+
+				taskPriorities.sort((a, b) => {
+					let result;
+					console.log(order.value);
+					if (order.value === 'ascending') {
+						result = a.innerText - b.innerText;
+					} else {
+						result = b.innerText - a.innerText;
+					}
+					return result;
+				});
+
+
+				const mainContainer = document.getElementById('tasks')
+				mainContainer.innerHTML = '';
+				taskPriorities.forEach(priority => {
+					const taskContainer = priority.parentElement;
+					mainContainer.appendChild(taskContainer);
+				});
+			}
+
+			function addTask() {
+
+				let textTask = document.getElementById(`textTask`).value
+				let priorityTask = document.getElementById(`priorityTask`).value
+
+
+				if (textTask !== '') {
+
+					const mainContainer = document.getElementById('tasks')
+
+
+					const div = document.createElement('div')
+					div.className = `added-task`
+
+					let blockWithText = document.createElement('div')
+					blockWithText.className = `added-task_text`
+					blockWithText.innerText = textTask
+					div.append(blockWithText)
+
+					let blockWithPriority = document.createElement('div')
+					blockWithPriority.className = `added-task_priority`
+
+					blockWithPriority.innerText = priorityTask
+					div.append(blockWithPriority)
+
+					let button_del_task = document.createElement('button')
+					button_del_task.classList.add(`btn_delete-task`)
+					button_del_task.innerText = `Видалити`
+					button_del_task.onclick = deleteTask
+					div.append(button_del_task)
+
+
+
+					textTask = document.getElementById(`textTask`)
+					textTask.value = ``
+
+					priorityTask = document.getElementById(`priorityTask`)
+					priorityTask.value = ``
+
+					mainContainer.append(div)
+				}
+			}
+
+			document.getElementById('btn_add_task').onclick = addTask;
+			document.getElementById('clearAll').onclick = clearAllTasks;
+			document.getElementById('sort').onclick = sort;
+		</script>
+
+</body>
+
+</html>

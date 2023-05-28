@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework №20</title>
+	<link rel="icon" type="image/x-icon" href="img/icon.ico">
+</head>
+
+<body>
+	<h2>Задача 3.</h2>
+	<div>
+		<p>
+			Дано список автомобілів (марка, рік випуску, ціна). Сформувати елементи для фільтрування з використанням
+			випадаючого
+			списку (контент цих випадаючих списків сформувати у залежності від переданого списку).
+		</p>
+	</div>
+
+	<div class="main"></div>
+	<style>
+		.container {
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
+		}
+
+		.items__container {
+			display: flex;
+			align-items: flex-start;
+			gap: 20px;
+		}
+
+		.item__container {
+			display: flex;
+			gap: 10px;
+			align-items: center;
+			justify-content: start;
+		}
+
+		.title__search {
+			color: rgb(81, 42, 165);
+		}
+
+		.search__form {
+			font-size: 20px;
+			background-color: transparent;
+			border: 2px solid rgb(42, 165, 69);
+			padding: 5px;
+		}
+
+		.button {
+			align-self: flex-end;
+			font-size: 18px;
+			background-color: rgb(111, 91, 226);
+			color: white;
+			border-radius: 3px;
+			text-align: center;
+			padding: 10px;
+			cursor: pointer;
+		}
+
+		.button:hover {
+			background-color: rgb(34, 178, 53);
+		}
+
+		.result__container {
+			font-size: 24px;
+		}
+	</style>
+
+	<script>
+		class CarSearch {
+			constructor(titleModel, titleYear, titlePrice, carsList, styleList) {
+				this.titleModel = titleModel
+				this.titleYear = titleYear
+				this.titlePrice = titlePrice
+				this.carsList = carsList
+				this.styleList = styleList
+			}
+			searchCar() {
+				let searchModel = this.selectModel.value
+				let searchYear = this.selectYear.value
+				let searchPrice = this.selectPrice.value
+				let div = document.createElement('div')
+				div.className = this.styleList.resultDiv
+				div.innerText = `Model : ${searchModel}, Year : ${searchYear}, Price : ${searchPrice} eur.`
+				this.resultContainer.append(div)
+			}
+			render(targetSelector) {
+				const mainContainer = document.createElement('div')
+				mainContainer.className = this.styleList.container
+				//
+				const itemsContainer = document.createElement('div')
+				itemsContainer.className = this.styleList.itemsDiv
+				mainContainer.append(itemsContainer)
+				//
+				const itemModel = document.createElement('div')
+				itemModel.className = this.styleList.itemDiv
+				let titleSearch = document.createElement('h3')
+				titleSearch.className = this.styleList.titleDiv
+				titleSearch.innerText = this.titleModel
+				itemModel.append(titleSearch)
+				this.selectModel = document.createElement('select')
+				this.selectModel.className = this.styleList.searchForm
+				for (const elem of this.carsList) {
+					let opt = document.createElement('option')
+					opt.setAttribute('value', `${elem.model}`)
+					opt.innerText = elem.model
+					this.selectModel.append(opt)
+				}
+				itemModel.append(this.selectModel)
+				itemsContainer.append(itemModel)
+				//
+				const itemYear = document.createElement('div')
+				itemYear.className = this.styleList.itemDiv
+				titleSearch = document.createElement('h3')
+				titleSearch.className = this.styleList.titleDiv
+				titleSearch.innerText = this.titleYear
+				itemYear.append(titleSearch)
+				this.selectYear = document.createElement('select')
+				this.selectYear.className = this.styleList.searchForm
+				for (const elem of this.carsList) {
+					let opt = document.createElement('option')
+					opt.setAttribute('value', `${elem.year}`)
+					opt.innerText = elem.year
+					this.selectYear.append(opt)
+				}
+				itemYear.append(this.selectYear)
+				itemsContainer.append(itemYear)
+				//
+				const itemPrice = document.createElement('div')
+				itemPrice.className = this.styleList.itemDiv
+				titleSearch = document.createElement('h3')
+				titleSearch.className = this.styleList.titleDiv
+				titleSearch.innerText = this.titlePrice
+				itemPrice.append(titleSearch)
+				this.selectPrice = document.createElement('select')
+				this.selectPrice.className = this.styleList.searchForm
+				for (const elem of this.carsList) {
+					let opt = document.createElement('option')
+					opt.setAttribute('value', `${elem.price}`)
+					opt.innerText = elem.price + ' eur'
+					this.selectPrice.append(opt)
+				}
+				itemPrice.append(this.selectPrice)
+				itemsContainer.append(itemPrice)
+				//
+				this.btn = document.createElement('button')
+				this.btn.className = this.styleList.button
+				this.btn.innerText = 'Form elements'
+				mainContainer.append(this.btn)
+				this.btn.onclick = this.searchCar.bind(this)
+				//
+				this.resultContainer = document.createElement('div')
+				mainContainer.append(this.resultContainer)
+				//
+				document.querySelector(targetSelector).append(mainContainer)
+			}
+		}
+		let styleList = {
+			container: 'container',
+			itemsDiv: 'items__container',
+			itemDiv: 'item__container',
+			titleDiv: 'title__search',
+			searchForm: 'search__form',
+			button: 'button',
+			resultDiv: 'result__container'
+		}
+		let carsList = [
+			{
+				model: 'Fiat',
+				year: '1997',
+				price: 1000
+			},
+			{
+				model: 'Lancia',
+				year: '2000',
+				price: 1500
+			},
+			{
+				model: 'Jeep',
+				year: '2002',
+				price: 2000
+			},
+			{
+				model: 'Ferrari',
+				year: '2010',
+				price: 100000
+			},
+			{
+				model: 'Lamborghini',
+				year: '2023',
+				price: 400000
+			},
+			{
+				model: 'Alfa Romeo',
+				year: '2015',
+				price: 20000
+			}
+		]
+		window.onload = function () {
+			let carSearch = new CarSearch('Model', 'Year', 'Price', carsList, styleList)
+			carSearch.render('.main')
+		}
+	</script>
+
+</body>
+
+</html>

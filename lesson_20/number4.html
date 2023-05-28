@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/number4/number4.css">
+	<title>Homework №20</title>
+	<link rel="icon" type="image/x-icon" href="img/icon.ico">
+</head>
+
+<body>
+	<h2>Задача 4.</h2>
+	<div>
+		<p>
+			Перекладач. Користувачу виводять змішані картки з словами на англійській і українській мові. Користувач
+			поступово клікає
+			на картки (виділяємо синьою рамкою). Якщо знайдено правильні пари карток, що відповідають одному слову, то
+			видаляємо ці
+			картки. Інакше - виділяємо червоною рамкою і через секунду забираємо рамку.
+		</p>
+	</div>
+
+	<div id="container"></div>
+	<script>
+		'use strict'
+
+		class Translater {
+			constructor(wordsArray) {
+				this.wordsArray = wordsArray
+				this.compareWordsArray = []
+				this.clickWordLanguage = []
+				this.clickedLi = []
+			}
+			shuffleArray([...array]) {
+				for (let i = array.length - 1; i > 0; i--) {
+					let j = Math.floor(Math.random() * (i + 1))
+						;[array[i], array[j]] = [array[j], array[i]]
+				}
+				return array
+			}
+			deleteWords(id) {
+				this.wordsArray = this.wordsArray.filter((word) => word.id !== id)
+
+				this.listContainer.innerHTML = ''
+				this.listContainer.append(this.createList(this.wordsArray, 'en'))
+				this.listContainer.append(this.createList(this.wordsArray, 'ua'))
+			}
+
+			compareWords(object, lang) {
+				this.compareWordsArray.push(object)
+				this.clickWordLanguage.push(lang)
+
+				if (this.compareWordsArray.length > 1 && !(this.clickWordLanguage[0] === lang)) {
+
+					const res = this.compareWordsArray[0].id === object.id
+
+					if (res) {
+						this.compareWordsArray = []
+						this.clickWordLanguage = []
+
+						for (const li of this.clickedLi) {
+							li.classList.remove('focus')
+							li.classList.add('correct')
+						}
+						setTimeout(this.deleteWords.bind(this, object.id), 1000)
+
+						this.clickedLi = []
+					} else {
+
+						this.compareWordsArray = []
+						this.clickWordLanguage = []
+
+						for (const li of this.clickedLi) {
+							li.classList.remove('focus')
+							li.classList.add('mistake')
+							setTimeout(() => (li.className = 'li'), 1000)
+						}
+
+						this.clickedLi = []
+					}
+				} else if (this.compareWordsArray.length > 1 && this.clickWordLanguage[0] === lang) {
+
+					this.compareWordsArray = []
+					this.clickWordLanguage = []
+
+					for (const li of this.clickedLi) {
+						li.classList.remove('focus')
+						li.classList.add('mistake')
+						setTimeout(() => (li.className = 'li'), 1000)
+					}
+
+					this.clickedLi = []
+				}
+			}
+			createList(array, language) {
+				const list = document.createElement('ul')
+				list.className = 'list'
+
+				const suffledWordsArray = this.shuffleArray(array)
+
+				for (const wordObj of suffledWordsArray) {
+					const li = document.createElement('li')
+					li.className = 'li'
+					li.innerText = wordObj[language]
+
+					li.onclick = () => {
+						this.clickedLi.push(li)
+						li.classList.add('focus')
+						this.compareWords(wordObj, language)
+					}
+
+					list.append(li)
+				}
+
+				return list
+			}
+			render(containerId) {
+				const targetContainer = document.getElementById(containerId)
+
+				const title = document.createElement('h2')
+				title.className = 'title'
+				title.innerText = 'Знайдіть правильні пари карток'
+				targetContainer.append(title)
+
+				this.listContainer = document.createElement('div')
+				this.listContainer.className = 'list-container'
+				targetContainer.append(this.listContainer)
+
+				this.listContainer.append(this.createList(this.wordsArray, 'en'))
+				this.listContainer.append(this.createList(this.wordsArray, 'ua'))
+			}
+		}
+
+		const words = [
+			{
+				id: 0,
+				en: 'mouse',
+				ua: 'миша',
+			},
+			{
+				id: 1,
+				en: 'keyboard',
+				ua: 'клавіатура',
+			},
+			{
+				id: 2,
+				en: 'space',
+				ua: 'пробіл',
+			},
+			{
+				id: 3,
+				en: 'funny',
+				ua: 'смішний',
+			},
+			{
+				id: 4,
+				en: 'programmer',
+				ua: 'програміст',
+			},
+			{
+				id: 5,
+				en: 'smile',
+				ua: 'посмішка',
+			},
+			{
+				id: 6,
+				en: 'head',
+				ua: 'голова',
+			}
+		]
+
+		window.onload = () => {
+			const tr1 = new Translater(words)
+			tr1.render('container')
+		}
+
+	</script>
+
+
+</body>
+
+</html>
