@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework №25</title>
+	<link rel="icon" type="image/x-icon" href="img/icon.ico">
+</head>
+
+<body>
+	<h2>Задача 1.</h2>
+	<div>
+		<p>
+			Дано клас PhoneNumber. Створити функцію перетворення до string, при якому на основі номера виводиться оператор
+			(050….
+			MTC, 096… Kyivstar, ….)
+		</p>
+	</div>
+	<section class="block">
+		<div class="block__container">
+		</div>
+	</section>
+
+	<script>
+
+		class PhoneNumber {
+			constructor(phoneNumber) {
+				this.phoneNumber = phoneNumber
+			}
+
+			checkOperator() {
+				let operator
+
+				if (/393(31|32|33|34|35)\d{7}/.test(this.phoneNumber)) operator = 'Iliad'
+				else if (/393(41|42|43|44|45)\d{7}/.test(this.phoneNumber)) operator = 'Windtre'
+				else if (/393(51|52|53|54|55)\d{7}/.test(this.phoneNumber)) operator = 'Vodafone'
+
+				return operator
+			}
+
+			render(targetContainer) {
+				document.querySelector(targetContainer).append(this)
+			}
+
+			[Symbol.toPrimitive](hint) {
+				let result
+
+				switch (hint) {
+					case 'number':
+						result = this.phoneNumber
+						break
+					case 'string':
+						result = `${this.checkOperator()} : +${this.phoneNumber}; `
+						break
+					default:
+						result = null
+						break
+				}
+
+				return result
+			}
+		}
+
+		new PhoneNumber(393318256924).render('.block__container')
+		new PhoneNumber(393518192634).render('.block__container')
+		new PhoneNumber(393527897890).render('.block__container')
+		new PhoneNumber(393445671232).render('.block__container')
+
+	</script>
+
+
+</body>
+
+</html>

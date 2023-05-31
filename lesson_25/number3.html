@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework №25</title>
+	<link rel="icon" type="image/x-icon" href="img/icon.ico">
+</head>
+
+<body>
+	<h2>Задача 3.</h2>
+	<div>
+		<p>
+			Створити генератор, який би випадковим чином поступово генерував вказану кількість парних чисел.
+		</p>
+	</div>
+
+	<section class="block">
+		<div class="block__container">
+		</div>
+	</section>
+
+	<script>
+		function getRandomNumber(min, max) {
+			return Math.floor(Math.random() * (max - min + 1) + min)
+		}
+
+		function* generateRandomEvenNums(numberOfNumbers) {
+			for (let i = 0; i < numberOfNumbers; i++) {
+				let randomNumber = getRandomNumber(1, 49)
+				if (randomNumber % 2 === 0) yield randomNumber
+				else yield randomNumber + 1
+			}
+		}
+
+		let result = ''
+
+		for (let num of generateRandomEvenNums(14)) {
+			result += `${num}; `
+		}
+
+		document.querySelector('.block__container').innerText = result
+
+	</script>
+
+
+</body>
+
+</html>
